@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menú El Marati - Carrito Elegante</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#005fac",
+                        "primary-dark": "#004a87",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101622",
+                        "ocean-black": "#050b14",
+                        "sand-white": "#f3f4f6",
+                        "coral-accent": "#f43b05",
+                        "text-dark": "#1a1a1a",
+                        "gold-accent": "#D4AF37",
+                        "navy-text": "#0a192f",
+                        "charcoal-text": "#2d3748",
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "body": ["Lato", "sans-serif"],
+                    },
+                    borderRadius: { 
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem", 
+                        "full": "9999px",
+                        "modern": "10px" 
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .transparent-nav {
+            background: transparent;
+        }
+        .glass-nav {
+            background: rgba(16, 22, 34, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .hero-gradient {
+            background: linear-gradient(0deg, rgba(5, 11, 20, 0.8) 0%, rgba(5, 11, 20, 0.4) 100%);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+        .card-gradient-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .cart-glass-luxury-light {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+        }
+        .btn-luxury {
+            background: linear-gradient(135deg, #005fac 0%, #003d73 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-sand-white antialiased overflow-hidden">
+<div class="fixed inset-0 bg-black/40 z-[60] backdrop-blur-sm"></div>
+<div class="fixed top-0 right-0 h-full w-full max-w-md cart-glass-luxury-light z-[70] shadow-2xl flex flex-col transform transition-transform duration-300">
+<div class="p-8 flex items-center justify-between border-b border-gray-200">
+<h2 class="font-display text-3xl font-bold text-navy-text tracking-wide">Tu Carrito</h2>
+<button class="p-2 text-charcoal-text hover:text-navy-text transition-colors rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined font-light">close</span>
+</button>
+</div>
+<div class="flex-grow overflow-y-auto px-8 pt-4 pb-8 space-y-0 hide-scrollbar">
+<div class="flex items-center gap-5 group border-b border-gray-100 py-6 first:pt-2">
+<div class="size-24 rounded-lg overflow-hidden flex-shrink-0 shadow-md border border-gray-200">
+<img alt="Ceviche" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy"/>
+</div>
+<div class="flex-grow flex flex-col justify-between h-24 py-1">
+<div>
+<h4 class="font-display font-medium text-navy-text text-lg leading-tight mb-1 tracking-wide">Ceviche Clásico</h4>
+<p class="font-display font-bold text-charcoal-text text-lg">S/ 32.00</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-4">
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-display font-medium text-lg text-navy-text">1</span>
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<button class="text-gray-500 hover:text-coral-accent transition-colors self-end">
+<span class="material-symbols-outlined text-[20px] font-light">delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-5 group border-b border-gray-100 py-6">
+<div class="size-24 rounded-lg overflow-hidden flex-shrink-0 shadow-md border border-gray-200">
+<img alt="Lomo Saltado" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM"/>
+</div>
+<div class="flex-grow flex flex-col justify-between h-24 py-1">
+<div>
+<h4 class="font-display font-medium text-navy-text text-lg leading-tight mb-1 tracking-wide">Lomo Saltado Royal</h4>
+<p class="font-display font-bold text-charcoal-text text-lg">S/ 48.00</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-4">
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-display font-medium text-lg text-navy-text">1</span>
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<button class="text-gray-500 hover:text-coral-accent transition-colors self-end">
+<span class="material-symbols-outlined text-[20px] font-light">delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-5 group border-b border-gray-100 py-6">
+<div class="size-24 rounded-lg overflow-hidden flex-shrink-0 shadow-md border border-gray-200">
+<img alt="Arroz con Mariscos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tlFAmlCcdMINHX5gI9ttNlgrS2BF_vt36HoLyGu5TjWc69lYLHafQItJ8lc6Y8nqo34VZoXlrbIw-sb761io-NknXyds9NYUFIjkgQCSXaLa5bjA_SsZ0qnlDp2yR14xLrU9Lo6qodenFXYDz92SaZp8RSXaJeyI5UcsopIM2xthytvPtEO0vIYr4VC21Gb6vJ9gDjWlhkFDeYHwOBASuzdZeKcOukNkY4YSvJC4szh7Mx-pkdJQ-eEHR7uorRjEXdagToYQHyAE"/>
+</div>
+<div class="flex-grow flex flex-col justify-between h-24 py-1">
+<div>
+<h4 class="font-display font-medium text-navy-text text-lg leading-tight mb-1 tracking-wide">Arroz con Mariscos</h4>
+<p class="font-display font-bold text-charcoal-text text-lg">S/ 42.00</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-4">
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-display font-medium text-lg text-navy-text">1</span>
+<button class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-6 w-6 rounded-full hover:bg-gray-200/50">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<button class="text-gray-500 hover:text-coral-accent transition-colors self-end">
+<span class="material-symbols-outlined text-[20px] font-light">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-8 border-t border-gray-200 space-y-4 bg-white/50">
+<div class="flex justify-between items-center">
+<span class="font-body text-charcoal-text uppercase tracking-[0.15em] text-xs font-medium">Subtotal</span>
+<span class="font-display text-navy-text font-medium text-lg">S/ 122.00</span>
+</div>
+<div class="flex justify-between items-center pt-2 pb-2">
+<span class="font-display text-navy-text font-medium text-2xl tracking-wide">Total a Pagar</span>
+<span class="font-display text-navy-text font-bold text-3xl">S/ 122.00</span>
+</div>
+<button class="w-full btn-luxury hover:brightness-110 text-white font-body font-medium py-5 rounded-lg shadow-xl shadow-primary/20 transition-all uppercase tracking-[0.2em] text-sm mt-4 border border-white/20">
+            Finalizar Compra
+        </button>
+</div>
+</div>
+<div class="relative flex min-h-[60vh] w-full flex-col">
+<div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-in-out hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1VZC8lpWcsiPIpb399KjaYS1_YiKUdZQ6L2aQ6wJilJ7JDQVzahHCAAlbwCY-NcpyXMpPwM4Htpbg_22m62azWJR7I0WO4L-XhJaQyXwy6bh_S2yS-WGQr46ekNJd5BBnRvV5lsmZIGF96RYCmc0DcvWpdwW7gWsbUNB30k-j2yFSl06yzzXMQdI9beARkjbhngJf5-LGgr19KZ2lT9X_diLr31HZKiUQ05HhVpXAA6cKDEifstRRaKv5K3rjyaZyOry2Xv0dMllS");'></div>
+<div class="absolute inset-0 hero-gradient bg-black/50"></div>
+</div>
+<header class="fixed top-0 left-0 right-0 z-50 w-full transparent-nav transition-all duration-300">
+<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+<div class="flex items-center gap-3">
+<div class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-2xl">sailing</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-white lg:text-2xl drop-shadow-md font-display">El Marati</h1>
+</div>
+<nav class="hidden md:flex flex-1 justify-center">
+<ul class="flex items-center gap-10">
+<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Inicio</a></li>
+<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Menú</a></li>
+<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Reservas</a></li>
+<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Contacto</a></li>
+</ul>
+</nav>
+<div class="flex items-center gap-4">
+<button class="group relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white transition-colors hover:bg-primary hover:border-primary hover:text-white backdrop-blur-sm">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-coral-accent border-2 border-[#101622] animate-pulse-slow"></span>
+</button>
+<button class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative z-10 flex flex-grow flex-col items-center justify-center pt-20 pb-16">
+<div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 lg:px-8 text-center">
+<div class="flex flex-col gap-6 py-12 lg:py-20">
+<h2 class="font-display text-5xl font-black leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-2xl">
+                    Nuestra Carta: <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-coral-accent to-white">Un Festín de Sabores</span>
+</h2>
+<p class="font-body text-lg leading-relaxed text-gray-200 max-w-2xl mx-auto">
+                    Descubre nuestra selección de platos preparados con la pesca más fresca del día y la sazón inconfundible de nuestra tradición.
+                </p>
+</div>
+</div>
+</main>
+</div>
+<section class="bg-white py-8 border-b border-gray-100 sticky top-20 z-40 shadow-sm">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+<div class="flex items-center w-full lg:w-auto">
+<button class="flex-shrink-0 mr-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-xl font-bold">chevron_left</span>
+</button>
+<div class="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full lg:w-auto pb-2 lg:pb-0 scroll-smooth">
+<button class="whitespace-nowrap rounded-full bg-coral-accent px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-coral-accent/90 transition-colors font-body">Todos</button>
+<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Ceviches</button>
+<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Criollos</button>
+<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Marinos</button>
+<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Entradas</button>
+<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Bebidas</button>
+</div>
+<button class="flex-shrink-0 ml-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-xl font-bold">chevron_right</span>
+</button>
+</div>
+<div class="relative w-full lg:w-96">
+<input class="w-full rounded-full border border-gray-300 bg-gray-50 py-2.5 pl-12 pr-4 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary font-body transition-all" placeholder="Buscar plato..." type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-background-light py-12 px-6 lg:px-8 min-h-screen">
+<div class="mx-auto max-w-7xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
+<div class="relative overflow-hidden h-60">
+<img alt="Arroz con Mariscos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tlFAmlCcdMINHX5gI9ttNlgrS2BF_vt36HoLyGu5TjWc69lYLHafQItJ8lc6Y8nqo34VZoXlrbIw-sb761io-NknXyds9NYUFIjkgQCSXaLa5bjA_SsZ0qnlDp2yR14xLrU9Lo6qodenFXYDz92SaZp8RSXaJeyI5UcsopIM2xthytvPtEO0vIYr4VC21Gb6vJ9gDjWlhkFDeYHwOBASuzdZeKcOukNkY4YSvJC4szh7Mx-pkdJQ-eEHR7uorRjEXdagToYQHyAE"/>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow text-center">
+<h4 class="font-display text-xl font-bold text-text-dark mb-4">Arroz con Mariscos</h4>
+<div class="mt-auto w-full">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="font-display font-bold text-2xl text-primary">S/ 42.00</span>
+</div>
+<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                            Añadir al carrito
+                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
+<div class="relative overflow-hidden h-60">
+<img alt="Pulpo al Olivo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXXrk69thdb29EzcZCW3Vn0Eb5QV1ku39n50-bKFqX3fR157xtL_o8A6629b9h6Bw6LbU7fXMgbGQtIXEXkU6JHPs1_OF1ACvvMJiPTTlCP2GUimvSdYLvUozri6e5UIqDEHAA1tGHz05O9wNT32e21av7eK_aY6jE8R8CndeBEremZfbLDI3GddckHNe9TbdthUYJw6_ATECJz2w7Zr2w_rx_q-mx4AGaG45uHDv17d2kjS3Xk_GIS3MfuvgZfNYYJeeZeWksEbCw"/>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Entradas</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow text-center">
+<h4 class="font-display text-xl font-bold text-text-dark mb-4">Pulpo al Olivo</h4>
+<div class="mt-auto w-full">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="font-display font-bold text-2xl text-primary">S/ 38.00</span>
+</div>
+<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                            Añadir al carrito
+                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
+<div class="relative overflow-hidden h-60">
+<img alt="Tacu Tacu con Lomo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMT9I1rNy-1I9pl3634PDZ6cIcbD8aPvZ-zaMkuOY2ypfCgThso0-BQVR1zxMWglcp5PIrSfJ9ivIf8YC2cTfxwIcD6KfTha3qxfzVMK9SQyzdrcRVQzpmLmgB9mB27ammk5HFV5UGoUXMkV262XCtpe__8hUwEk-zSSbE2NbJWutFpZ_NStuzudtGTJSR2HV-_qti5qmIoP-QHCScFPBEQW9z2ncMRaWOSvNDwZNLrtEU0F5mzpXTZvIO-9zRrZgPb5t8gOHko6hk"/>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Criollos</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow text-center">
+<h4 class="font-display text-xl font-bold text-text-dark mb-4">Tacu Tacu a lo Pobre</h4>
+<div class="mt-auto w-full">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="font-display font-bold text-2xl text-primary">S/ 45.00</span>
+</div>
+<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                            Añadir al carrito
+                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
+<div class="relative overflow-hidden h-60">
+<img alt="Ceviche Clásico" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy"/>
+<div class="absolute top-3 right-3 z-20">
+<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow text-center">
+<h4 class="font-display text-xl font-bold text-text-dark mb-4">Ceviche Clásico</h4>
+<div class="mt-auto w-full">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="font-display font-bold text-2xl text-primary">S/ 32.00</span>
+</div>
+<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                            Añadir al carrito
+                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-background-dark text-gray-300 py-16 px-6 lg:px-8 border-t border-white/5">
+<div class="mx-auto max-w-7xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20">
+<span class="material-symbols-outlined text-2xl">sailing</span>
+</div>
+<h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md font-display">El Marati</h2>
+</div>
+<p class="text-sm leading-relaxed text-gray-400 font-body">
+                    Sabores peruanos auténticos con un toque de innovación. La mejor experiencia marina y criolla de la ciudad.
+                </p>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold font-display mb-6">Enlaces Rápidos</h3>
+<ul class="space-y-3 font-body text-sm">
+<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Inicio</a></li>
+<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Menú</a></li>
+<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Reservas</a></li>
+<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold font-display mb-6">Contacto</h3>
+<ul class="space-y-4 font-body text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
+<span class="text-gray-400">Av. La Mar 1234, Miraflores<br/>Lima, Perú</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">call</span>
+<span class="text-gray-400">+51 987 654 321</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">mail</span>
+<span class="text-gray-400">contacto@elmarati.com</span>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold font-display mb-6">Síguenos</h3>
+<div class="flex gap-4">
+<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 border border-white/10" href="#">
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-coral-accent hover:text-white transition-all duration-300 border border-white/10" href="#">
+<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 font-body">
+<p>© 2024 Cevicheria El Marati. Todos los derechos reservados.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
+<a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
