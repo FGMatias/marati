@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Checkout El Marati: Datos y Pedido</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
+<html class="dark" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Checkout El Marati: Datos y Pedido</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -27,15 +33,16 @@
             "display": ["Playfair Display", "serif"],
             "body": ["Lato", "sans-serif"],
           },
-          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
         },
       },
     }
   </script>
-<style>
+  <style>
     .transparent-nav {
       background: transparent;
     }
+
     .glass-nav {
       background: rgba(16, 22, 34, 0.85);
       backdrop-filter: blur(12px);
@@ -43,41 +50,63 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
+
     .text-nav-scrolled {
       color: #1a1a1a !important;
     }
+
     .text-nav-transparent {
       color: #ffffff !important;
-    }.solid-nav {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     }
+
+    .solid-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
     .hero-gradient {
       background: linear-gradient(0deg, rgba(5, 11, 20, 0.8) 0%, rgba(5, 11, 20, 0.4) 100%);
     }
+
     @keyframes pulse-slow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.1); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
     }
+
     .animate-pulse-slow {
       animation: pulse-slow 3s infinite ease-in-out;
     }
+
     .hide-scrollbar::-webkit-scrollbar {
-        display: none;
+      display: none;
     }
+
     .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }.form-input:focus, .form-textarea:focus, .form-select:focus {
-        border-color: #005fac;
-        box-shadow: 0 0 0 1px #005fac;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: #005fac;
+      box-shadow: 0 0 0 1px #005fac;
     }
   </style>
-<script>
-    window.addEventListener('scroll', function() {
+  <script>
+    window.addEventListener('scroll', function () {
       const header = document.querySelector('header');
       if (window.scrollY > 10) {
         header.classList.add('shadow-sm');
@@ -87,364 +116,433 @@
     });
     // Simple interaction logic simulation for the UI
     function selectOrderType(type) {
-        const types = ['delivery', 'pickup', 'dinein'];
-        types.forEach(t => {
-            const btn = document.getElementById(`btn-${t}`);
-            const icon = document.getElementById(`icon-${t}`);
-            if(t === type) {
-                btn.classList.remove('border-gray-200', 'bg-white', 'text-gray-600');
-                btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
-                icon.classList.add('text-primary');
-                icon.classList.remove('text-gray-400');
-            } else {
-                btn.classList.add('border-gray-200', 'bg-white', 'text-gray-600');
-                btn.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
-                icon.classList.remove('text-primary');
-                icon.classList.add('text-gray-400');
-            }
-        });
-        // Show/Hide fields based on selection
-        const addressField = document.getElementById('field-address');
-        const tableField = document.getElementById('field-table');
-        const shippingRow = document.getElementById('summary-shipping');
-        const totalAmount = document.getElementById('summary-total');
-        if (type === 'delivery') {
-            addressField.classList.remove('hidden');
-            tableField.classList.add('hidden');
-            shippingRow.classList.remove('hidden');
-            totalAmount.innerText = 'S/ 127.00';
-        } else if (type === 'dinein') {
-            addressField.classList.add('hidden');
-            tableField.classList.remove('hidden');
-            shippingRow.classList.add('hidden');
-            totalAmount.innerText = 'S/ 115.00';
+      const types = ['delivery', 'pickup', 'dinein'];
+      types.forEach(t => {
+        const btn = document.getElementById(`btn-${t}`);
+        const icon = document.getElementById(`icon-${t}`);
+        if (t === type) {
+          btn.classList.remove('border-gray-200', 'bg-white', 'text-gray-600');
+          btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+          icon.classList.add('text-primary');
+          icon.classList.remove('text-gray-400');
         } else {
-            addressField.classList.add('hidden');
-            tableField.classList.add('hidden');
-            shippingRow.classList.add('hidden');
-            totalAmount.innerText = 'S/ 115.00';
+          btn.classList.add('border-gray-200', 'bg-white', 'text-gray-600');
+          btn.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-gray-400');
         }
+      });
+      // Show/Hide fields based on selection
+      const addressField = document.getElementById('field-address');
+      const tableField = document.getElementById('field-table');
+      const shippingRow = document.getElementById('summary-shipping');
+      const totalAmount = document.getElementById('summary-total');
+      if (type === 'delivery') {
+        addressField.classList.remove('hidden');
+        tableField.classList.add('hidden');
+        shippingRow.classList.remove('hidden');
+        totalAmount.innerText = 'S/ 127.00';
+      } else if (type === 'dinein') {
+        addressField.classList.add('hidden');
+        tableField.classList.remove('hidden');
+        shippingRow.classList.add('hidden');
+        totalAmount.innerText = 'S/ 115.00';
+      } else {
+        addressField.classList.add('hidden');
+        tableField.classList.add('hidden');
+        shippingRow.classList.add('hidden');
+        totalAmount.innerText = 'S/ 115.00';
+      }
     }
   </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-dark antialiased overflow-x-hidden min-h-screen flex flex-col">
-<header class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
-<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-<div class="flex items-center gap-3">
-<div class="flex size-10 items-center justify-center rounded-full bg-primary text-white shadow-sm">
-<span class="material-symbols-outlined text-2xl">sailing</span>
-</div>
-<h1 class="text-xl font-bold tracking-tight text-primary-dark lg:text-2xl font-display">El Marati</h1>
-</div>
-<nav class="hidden md:flex flex-1 justify-center">
-<ul class="flex items-center gap-10">
-<li><a class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all" href="#">Inicio</a></li>
-<li><a class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all" href="#">Menú</a></li>
-<li><a class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all" href="#">Reservas</a></li>
-<li><a class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all" href="#">Contacto</a></li>
-</ul>
-</nav>
-<div class="flex items-center gap-4">
-<button class="group relative flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 transition-colors hover:bg-primary hover:border-primary hover:text-white">
-<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
-<span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-coral-accent border-2 border-white animate-pulse-slow"></span>
-</button>
-<button class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</header>
-<div class="relative w-full bg-white pt-28 pb-10 border-b border-gray-100">
-<div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 flex flex-col justify-end">
-<nav aria-label="Breadcrumb" class="flex mb-4">
-<ol class="inline-flex items-center space-x-1 md:space-x-3">
-<li class="inline-flex items-center">
-<a class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary font-body" href="#">
-        Inicio
-      </a>
-</li>
-<li>
-<div class="flex items-center">
-<span class="material-symbols-outlined text-gray-400 text-sm mx-1">chevron_right</span>
-<a class="ml-1 text-sm font-medium text-gray-500 hover:text-primary md:ml-2 font-body" href="#">Carrito</a>
-</div>
-</li>
-<li aria-current="page">
-<div class="flex items-center">
-<span class="material-symbols-outlined text-gray-400 text-sm mx-1">chevron_right</span>
-<span class="ml-1 text-sm font-medium text-primary font-bold md:ml-2 font-body">Checkout</span>
-</div>
-</li>
-</ol>
-</nav>
-<div class="flex flex-col gap-2">
-<h2 class="text-4xl md:text-5xl font-bold text-text-dark font-display tracking-tight">Finalizar Compra</h2>
-<p class="text-gray-500 font-body text-lg mt-1">Completa tus datos para confirmar tu pedido.</p>
-</div>
-</div>
-</div>
-<main class="flex-grow bg-background-light pb-20 pt-8">
-<div class="mx-auto max-w-7xl px-6 lg:px-8">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
-<section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-<div class="flex items-center gap-3 mb-6">
-<span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">1</span>
-<h3 class="text-2xl font-bold font-display text-text-dark">Tipo de Pedido</h3>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-<button class="relative flex flex-col items-center justify-center p-6 rounded-xl border-2 border-primary bg-primary/5 text-primary transition-all duration-200 hover:border-primary/70 hover:bg-primary/5 group" id="btn-delivery" onclick="selectOrderType('delivery')">
-<span class="material-symbols-outlined text-4xl mb-3 text-primary group-hover:scale-110 transition-transform" id="icon-delivery">two_wheeler</span>
-<span class="font-bold font-display text-lg">Delivery</span>
-<span class="absolute top-3 right-3 flex h-4 w-4">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
-</span>
-</button>
-<button class="relative flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-white text-gray-600 transition-all duration-200 hover:border-primary/50 hover:text-primary group" id="btn-pickup" onclick="selectOrderType('pickup')">
-<span class="material-symbols-outlined text-4xl mb-3 text-gray-400 group-hover:text-primary group-hover:scale-110 transition-transform" id="icon-pickup">shopping_bag</span>
-<span class="font-bold font-display text-lg">Para Llevar</span>
-</button>
-<button class="relative flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-white text-gray-600 transition-all duration-200 hover:border-primary/50 hover:text-primary group" id="btn-dinein" onclick="selectOrderType('dinein')">
-<span class="material-symbols-outlined text-4xl mb-3 text-gray-400 group-hover:text-primary group-hover:scale-110 transition-transform" id="icon-dinein">restaurant</span>
-<span class="font-bold font-display text-lg">En el Local</span>
-</button>
-</div>
-</section>
-<section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-<div class="flex items-center gap-3 mb-6">
-<span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">2</span>
-<h3 class="text-2xl font-bold font-display text-text-dark">Datos del Cliente</h3>
-</div>
-<form class="grid grid-cols-1 md:grid-cols-2 gap-6 font-body">
-<div class="col-span-1 md:col-span-2">
-<label class="block text-sm font-medium text-gray-700 mb-2" for="name">Nombre Completo</label>
-<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4" id="name" placeholder="Ej. Juan Pérez" type="text"/>
-</div>
-<div class="col-span-1">
-<label class="block text-sm font-medium text-gray-700 mb-2" for="phone">Teléfono</label>
-<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4" id="phone" placeholder="+51 999 999 999" type="tel"/>
-</div>
-<div class="col-span-1">
-<label class="block text-sm font-medium text-gray-700 mb-2" for="email">Correo Electrónico</label>
-<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4" id="email" placeholder="juan@ejemplo.com" type="email"/>
-</div>
-<div class="col-span-1 md:col-span-2" id="field-address">
-<label class="block text-sm font-medium text-gray-700 mb-2" for="address">Dirección de Entrega</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-3.5 text-gray-400">location_on</span>
-<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 pl-10 pr-4" id="address" placeholder="Av. Larco 123, Dpto 401, Miraflores" type="text"/>
-</div>
-</div>
-<div class="col-span-1 md:col-span-2 hidden" id="field-table">
-<label class="block text-sm font-medium text-gray-700 mb-2" for="table">Número de Mesa (Opcional)</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-3.5 text-gray-400">table_restaurant</span>
-<input class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 pl-10 pr-4" id="table" placeholder="Ej. 12" type="number"/>
-</div>
-</div>
-</form>
-</section>
-<section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8">
-<div class="flex items-center gap-3 mb-6">
-<span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">3</span>
-<h3 class="text-2xl font-bold font-display text-text-dark">Método de Pago</h3>
-</div>
-<div class="space-y-4 font-body">
-<label class="flex items-center p-4 border border-primary bg-primary/5 rounded-xl cursor-pointer transition-all">
-<input checked="" class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment" type="radio"/>
-<div class="ml-4 flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">credit_card</span>
-<span class="font-bold text-gray-900">Tarjeta de Crédito / Débito</span>
-</div>
-</label>
-<label class="flex items-center p-4 border border-gray-200 hover:border-primary/50 rounded-xl cursor-pointer transition-all">
-<input class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment" type="radio"/>
-<div class="ml-4 flex items-center gap-3">
-<span class="material-symbols-outlined text-purple-600">smartphone</span>
-<span class="font-bold text-gray-900">Yape / Plin</span>
-</div>
-</label>
-<label class="flex items-center p-4 border border-gray-200 hover:border-primary/50 rounded-xl cursor-pointer transition-all">
-<input class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment" type="radio"/>
-<div class="ml-4 flex items-center gap-3">
-<span class="material-symbols-outlined text-green-600">payments</span>
-<span class="font-bold text-gray-900">Efectivo</span>
-</div>
-</label>
-</div>
-</section>
-</div>
-<div class="lg:col-span-5 xl:col-span-4">
-<div class="sticky top-24">
-<div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-<div class="bg-gray-50 p-6 border-b border-gray-100">
-<h3 class="text-2xl font-bold font-display text-text-dark">Resumen de tu Pedido</h3>
-</div>
-<div class="p-6">
-<ul class="divide-y divide-gray-100 mb-6">
-<li class="flex py-4 gap-4">
-<div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-<img alt="Lomo Saltado" class="h-full w-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM"/>
-</div>
-<div class="flex flex-1 flex-col">
-<div>
-<div class="flex justify-between text-base font-bold text-gray-900 font-display">
-<h3>Lomo Saltado Royal</h3>
-<p class="ml-4">S/ 48.00</p>
-</div>
-<p class="mt-1 text-sm text-gray-500 font-body">Término medio</p>
-</div>
-<div class="flex flex-1 items-end justify-between text-sm">
-<p class="text-gray-500 font-body">Cant: 1</p>
-</div>
-</div>
-</li>
-<li class="flex py-4 gap-4">
-<div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-<img alt="Ceviche Clásico" class="h-full w-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy"/>
-</div>
-<div class="flex flex-1 flex-col">
-<div>
-<div class="flex justify-between text-base font-bold text-gray-900 font-display">
-<h3>Ceviche Clásico</h3>
-<p class="ml-4">S/ 32.00</p>
-</div>
-<p class="mt-1 text-sm text-gray-500 font-body">Picante medio</p>
-</div>
-<div class="flex flex-1 items-end justify-between text-sm">
-<p class="text-gray-500 font-body">Cant: 1</p>
-</div>
-</div>
-</li>
-<li class="flex py-4 gap-4">
-<div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-<img alt="Causa" class="h-full w-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIyZGVpIItL50o3gLDF7ZyP7nMWx2iSfyDd_dJcdgkTmgQVsL5_ebde-sDA36caw6ZU4NgszW5bodqFGw0CIBPSEpG2_GShXTO1BdbVPZ8F7cADfx-7i7ouwRdU3k3M7wqk-DuzIG-Nt4Vz7Lw-Kfpqpea_hi8ntvrpSVD97WGdQCC8PpLGBfjaAkR2HQytu782v-O93FAWsvdr_hGIM8B64pChR1BoBSYiHXgkNY0yzpO_No7tvQRIiwBXf2XQY5FkKuFRUqRHKP"/>
-</div>
-<div class="flex flex-1 flex-col">
-<div>
-<div class="flex justify-between text-base font-bold text-gray-900 font-display">
-<h3>Causa de Langostinos</h3>
-<p class="ml-4">S/ 35.00</p>
-</div>
-</div>
-<div class="flex flex-1 items-end justify-between text-sm">
-<p class="text-gray-500 font-body">Cant: 1</p>
-</div>
-</div>
-</li>
-</ul>
-<div class="border-t border-gray-100 pt-4 space-y-3 font-body text-sm">
-<div class="flex justify-between text-gray-600">
-<p>Subtotal</p>
-<p class="font-bold text-gray-900">S/ 115.00</p>
-</div>
-<div class="flex justify-between text-gray-600" id="summary-shipping">
-<p>Costo de Envío</p>
-<p class="font-bold text-gray-900">S/ 12.00</p>
-</div>
-<div class="flex justify-between text-gray-600">
-<p>IGV (18%)</p>
-<p class="text-xs text-gray-400 self-center">Incluido</p>
-</div>
-</div>
-<div class="border-t border-gray-200 pt-6 mt-6">
-<div class="flex justify-between text-xl font-bold text-text-dark font-display">
-<p>Total a Pagar</p>
-<p class="text-primary" id="summary-total">S/ 127.00</p>
-</div>
-<p class="mt-0.5 text-xs text-gray-500 font-body text-right">Impuestos incluidos</p>
-</div>
-<div class="mt-8">
-<button class="w-full flex items-center justify-center rounded-full border border-transparent bg-primary px-6 py-4 text-base font-bold text-white shadow-lg hover:bg-primary-dark hover:shadow-primary/30 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 font-body uppercase tracking-wider">
-                                    Finalizar y Pagar
-                                    <span class="material-symbols-outlined ml-2">check_circle</span>
-</button>
-<div class="mt-4 flex justify-center text-center text-sm text-gray-500 font-body">
-<p>
-                                        o 
-                                        <button class="font-medium text-primary hover:text-primary-dark transition-colors ml-1 hover:underline" type="button">
-                                            Seguir Comprando
-                                        </button>
-</p>
-</div>
-</div>
-</div>
-<div class="bg-gray-50 p-4 text-center border-t border-gray-100">
-<div class="flex items-center justify-center gap-2 text-xs text-gray-500 font-body">
-<span class="material-symbols-outlined text-sm">lock</span>
-                                Pago 100% Seguro y Encriptado
-                            </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="bg-background-dark text-gray-300 py-16 px-6 lg:px-8 border-t border-white/5">
-<div class="mx-auto max-w-7xl">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
-<div class="flex flex-col gap-6">
-<div class="flex items-center gap-3">
-<div class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20">
-<span class="material-symbols-outlined text-2xl">sailing</span>
-</div>
-<h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md font-display">El Marati</h2>
-</div>
-<p class="text-sm leading-relaxed text-gray-400 font-body">
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-text-dark antialiased overflow-x-hidden min-h-screen flex flex-col">
+  <header
+    class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex size-10 items-center justify-center rounded-full bg-primary text-white shadow-sm">
+          <span class="material-symbols-outlined text-2xl">sailing</span>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-primary-dark lg:text-2xl font-display">El Marati</h1>
+      </div>
+      <nav class="hidden md:flex flex-1 justify-center">
+        <ul class="flex items-center gap-10">
+          <li><a
+              class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all"
+              href="inicio.html">Inicio</a></li>
+          <li><a
+              class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all"
+              href="menu.html">Menú</a></li>
+          <li><a
+              class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all"
+              href="reserva.html">Reservas</a></li>
+          <li><a
+              class="text-base font-medium font-body text-gray-600 hover:text-primary hover:underline decoration-primary decoration-2 underline-offset-8 transition-all"
+              href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button
+          class="group relative flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 transition-colors hover:bg-primary hover:border-primary hover:text-white">
+          <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+          <span
+            class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-coral-accent border-2 border-white animate-pulse-slow"></span>
+        </button>
+        <button class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="relative w-full bg-white pt-28 pb-10 border-b border-gray-100">
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 flex flex-col justify-end">
+      <nav aria-label="Breadcrumb" class="flex mb-4">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-primary font-body"
+              href="inicio.html">
+              Inicio
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <span class="material-symbols-outlined text-gray-400 text-sm mx-1">chevron_right</span>
+              <a class="ml-1 text-sm font-medium text-gray-500 hover:text-primary md:ml-2 font-body"
+                href="carrito.html">Carrito</a>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div class="flex items-center">
+              <span class="material-symbols-outlined text-gray-400 text-sm mx-1">chevron_right</span>
+              <span class="ml-1 text-sm font-medium text-primary font-bold md:ml-2 font-body">Checkout</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+      <div class="flex flex-col gap-2">
+        <h2 class="text-4xl md:text-5xl font-bold text-text-dark font-display tracking-tight">Finalizar Compra</h2>
+        <p class="text-gray-500 font-body text-lg mt-1">Completa tus datos para confirmar tu pedido.</p>
+      </div>
+    </div>
+  </div>
+  <main class="flex-grow bg-background-light pb-20 pt-8">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
+          <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">1</span>
+              <h3 class="text-2xl font-bold font-display text-text-dark">Tipo de Pedido</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button
+                class="relative flex flex-col items-center justify-center p-6 rounded-xl border-2 border-primary bg-primary/5 text-primary transition-all duration-200 hover:border-primary/70 hover:bg-primary/5 group"
+                id="btn-delivery" onclick="selectOrderType('delivery')">
+                <span
+                  class="material-symbols-outlined text-4xl mb-3 text-primary group-hover:scale-110 transition-transform"
+                  id="icon-delivery">two_wheeler</span>
+                <span class="font-bold font-display text-lg">Delivery</span>
+                <span class="absolute top-3 right-3 flex h-4 w-4">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
+                </span>
+              </button>
+              <button
+                class="relative flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-white text-gray-600 transition-all duration-200 hover:border-primary/50 hover:text-primary group"
+                id="btn-pickup" onclick="selectOrderType('pickup')">
+                <span
+                  class="material-symbols-outlined text-4xl mb-3 text-gray-400 group-hover:text-primary group-hover:scale-110 transition-transform"
+                  id="icon-pickup">shopping_bag</span>
+                <span class="font-bold font-display text-lg">Para Llevar</span>
+              </button>
+              <button
+                class="relative flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-white text-gray-600 transition-all duration-200 hover:border-primary/50 hover:text-primary group"
+                id="btn-dinein" onclick="selectOrderType('dinein')">
+                <span
+                  class="material-symbols-outlined text-4xl mb-3 text-gray-400 group-hover:text-primary group-hover:scale-110 transition-transform"
+                  id="icon-dinein">restaurant</span>
+                <span class="font-bold font-display text-lg">En el Local</span>
+              </button>
+            </div>
+          </section>
+          <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">2</span>
+              <h3 class="text-2xl font-bold font-display text-text-dark">Datos del Cliente</h3>
+            </div>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6 font-body">
+              <div class="col-span-1 md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="name">Nombre Completo</label>
+                <input
+                  class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4"
+                  id="name" placeholder="Ej. Juan Pérez" type="text" />
+              </div>
+              <div class="col-span-1">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="phone">Teléfono</label>
+                <input
+                  class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4"
+                  id="phone" placeholder="+51 999 999 999" type="tel" />
+              </div>
+              <div class="col-span-1">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="email">Correo Electrónico</label>
+                <input
+                  class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 px-4"
+                  id="email" placeholder="juan@ejemplo.com" type="email" />
+              </div>
+              <div class="col-span-1 md:col-span-2" id="field-address">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="address">Dirección de Entrega</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-3 top-3.5 text-gray-400">location_on</span>
+                  <input
+                    class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 pl-10 pr-4"
+                    id="address" placeholder="Av. Larco 123, Dpto 401, Miraflores" type="text" />
+                </div>
+              </div>
+              <div class="col-span-1 md:col-span-2 hidden" id="field-table">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="table">Número de Mesa
+                  (Opcional)</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-3 top-3.5 text-gray-400">table_restaurant</span>
+                  <input
+                    class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary py-3 pl-10 pr-4"
+                    id="table" placeholder="Ej. 12" type="number" />
+                </div>
+              </div>
+            </form>
+          </section>
+          <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8">
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold font-body text-sm">3</span>
+              <h3 class="text-2xl font-bold font-display text-text-dark">Método de Pago</h3>
+            </div>
+            <div class="space-y-4 font-body">
+              <label
+                class="flex items-center p-4 border border-primary bg-primary/5 rounded-xl cursor-pointer transition-all">
+                <input checked="" class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment"
+                  type="radio" />
+                <div class="ml-4 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">credit_card</span>
+                  <span class="font-bold text-gray-900">Tarjeta de Crédito / Débito</span>
+                </div>
+              </label>
+              <label
+                class="flex items-center p-4 border border-gray-200 hover:border-primary/50 rounded-xl cursor-pointer transition-all">
+                <input class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment" type="radio" />
+                <div class="ml-4 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-purple-600">smartphone</span>
+                  <span class="font-bold text-gray-900">Yape / Plin</span>
+                </div>
+              </label>
+              <label
+                class="flex items-center p-4 border border-gray-200 hover:border-primary/50 rounded-xl cursor-pointer transition-all">
+                <input class="h-5 w-5 text-primary border-gray-300 focus:ring-primary" name="payment" type="radio" />
+                <div class="ml-4 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-green-600">payments</span>
+                  <span class="font-bold text-gray-900">Efectivo</span>
+                </div>
+              </label>
+            </div>
+          </section>
+        </div>
+        <div class="lg:col-span-5 xl:col-span-4">
+          <div class="sticky top-24">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <div class="bg-gray-50 p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold font-display text-text-dark">Resumen de tu Pedido</h3>
+              </div>
+              <div class="p-6">
+                <ul class="divide-y divide-gray-100 mb-6">
+                  <li class="flex py-4 gap-4">
+                    <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <img alt="Lomo Saltado" class="h-full w-full object-cover object-center"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM" />
+                    </div>
+                    <div class="flex flex-1 flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-bold text-gray-900 font-display">
+                          <h3>Lomo Saltado Royal</h3>
+                          <p class="ml-4">S/ 48.00</p>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500 font-body">Término medio</p>
+                      </div>
+                      <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500 font-body">Cant: 1</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="flex py-4 gap-4">
+                    <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <img alt="Ceviche Clásico" class="h-full w-full object-cover object-center"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy" />
+                    </div>
+                    <div class="flex flex-1 flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-bold text-gray-900 font-display">
+                          <h3>Ceviche Clásico</h3>
+                          <p class="ml-4">S/ 32.00</p>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500 font-body">Picante medio</p>
+                      </div>
+                      <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500 font-body">Cant: 1</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="flex py-4 gap-4">
+                    <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <img alt="Causa" class="h-full w-full object-cover object-center"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIyZGVpIItL50o3gLDF7ZyP7nMWx2iSfyDd_dJcdgkTmgQVsL5_ebde-sDA36caw6ZU4NgszW5bodqFGw0CIBPSEpG2_GShXTO1BdbVPZ8F7cADfx-7i7ouwRdU3k3M7wqk-DuzIG-Nt4Vz7Lw-Kfpqpea_hi8ntvrpSVD97WGdQCC8PpLGBfjaAkR2HQytu782v-O93FAWsvdr_hGIM8B64pChR1BoBSYiHXgkNY0yzpO_No7tvQRIiwBXf2XQY5FkKuFRUqRHKP" />
+                    </div>
+                    <div class="flex flex-1 flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-bold text-gray-900 font-display">
+                          <h3>Causa de Langostinos</h3>
+                          <p class="ml-4">S/ 35.00</p>
+                        </div>
+                      </div>
+                      <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500 font-body">Cant: 1</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="border-t border-gray-100 pt-4 space-y-3 font-body text-sm">
+                  <div class="flex justify-between text-gray-600">
+                    <p>Subtotal</p>
+                    <p class="font-bold text-gray-900">S/ 115.00</p>
+                  </div>
+                  <div class="flex justify-between text-gray-600" id="summary-shipping">
+                    <p>Costo de Envío</p>
+                    <p class="font-bold text-gray-900">S/ 12.00</p>
+                  </div>
+                  <div class="flex justify-between text-gray-600">
+                    <p>IGV (18%)</p>
+                    <p class="text-xs text-gray-400 self-center">Incluido</p>
+                  </div>
+                </div>
+                <div class="border-t border-gray-200 pt-6 mt-6">
+                  <div class="flex justify-between text-xl font-bold text-text-dark font-display">
+                    <p>Total a Pagar</p>
+                    <p class="text-primary" id="summary-total">S/ 127.00</p>
+                  </div>
+                  <p class="mt-0.5 text-xs text-gray-500 font-body text-right">Impuestos incluidos</p>
+                </div>
+                <div class="mt-8">
+                  <button
+                    class="w-full flex items-center justify-center rounded-full border border-transparent bg-primary px-6 py-4 text-base font-bold text-white shadow-lg hover:bg-primary-dark hover:shadow-primary/30 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 font-body uppercase tracking-wider">
+                    Finalizar y Pagar
+                    <span class="material-symbols-outlined ml-2">check_circle</span>
+                  </button>
+                  <div class="mt-4 flex justify-center text-center text-sm text-gray-500 font-body">
+                    <p>
+                      o
+                      <button
+                        class="font-medium text-primary hover:text-primary-dark transition-colors ml-1 hover:underline"
+                        type="button">
+                        Seguir Comprando
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-50 p-4 text-center border-t border-gray-100">
+                <div class="flex items-center justify-center gap-2 text-xs text-gray-500 font-body">
+                  <span class="material-symbols-outlined text-sm">lock</span>
+                  Pago 100% Seguro y Encriptado
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-background-dark text-gray-300 py-16 px-6 lg:px-8 border-t border-white/5">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center gap-3">
+            <div
+              class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20">
+              <span class="material-symbols-outlined text-2xl">sailing</span>
+            </div>
+            <h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md font-display">El Marati</h2>
+          </div>
+          <p class="text-sm leading-relaxed text-gray-400 font-body">
             Sabores peruanos auténticos con un toque de innovación. La mejor experiencia marina y criolla de la ciudad.
           </p>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Enlaces Rápidos</h3>
-<ul class="space-y-3 font-body text-sm">
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Inicio</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Menú</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Reservas</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Contacto</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Contacto</h3>
-<ul class="space-y-4 font-body text-sm">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
-<span class="text-gray-400">Av. La Mar 1234, Miraflores<br/>Lima, Perú</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">call</span>
-<span class="text-gray-400">+51 987 654 321</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">mail</span>
-<span class="text-gray-400">contacto@elmarati.com</span>
-</li>
-</ul>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Síguenos</h3>
-<div class="flex gap-4">
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-coral-accent hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-[#25D366] hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c.967.592 2.056.935 3.208.935h.005c3.179 0 5.767-2.587 5.767-5.766.001-1.541-.602-2.985-1.695-4.073-1.092-1.088-2.545-1.693-4.483-1.649zm9.75 3.129c1.42 2.346 1.42 5.283-.281 7.693l-1.011 3.3 2.181.572a1.001 1.001 0 0 1 .718 1.258l-.666 2.53a.999.999 0 0 1-1.259.718l-1.834-.482a13.918 13.918 0 0 1-5.12 1.944l.117 1.895a1 1 0 0 1-.937 1.06h-3.61a1 1 0 0 1-.994-.906l-.16-1.894a14.048 14.048 0 0 1-5.02-1.884l-1.865.61a.999.999 0 0 1-1.272-.614l-.841-2.476a.999.999 0 0 1 .555-1.27l2.067-.788a13.882 13.882 0 0 1-.417-6.046l-2.071-.726a1.001 1.001 0 0 1-.617-1.253l.794-2.492a1 1 0 0 1 1.254-.627l1.961.574a14.07 14.07 0 0 1 4.908-2.126l.164-1.928a1 1 0 0 1 .995-.916h3.61a1.001 1.001 0 0 1 .993.915l.116 1.927a14.084 14.084 0 0 1 5.097 2.186l1.887-.618a1.001 1.001 0 0 1 1.266.603l.898 2.457a.999.999 0 0 1-.6 1.26l-2.046.726zM20.52 3.456a10.912 10.912 0 0 0-7.794-3.23c-4.148 0-7.74 2.521-9.434 6.13a10.875 10.875 0 0 0-.256 8.362l-1.583 5.776 5.922-1.55a10.893 10.893 0 0 0 5.352 1.396h.006c6.023 0 10.923-4.9 10.925-10.922a10.874 10.874 0 0 0-3.138-7.962z"></path></svg>
-</a>
-</div>
-</div>
-</div>
-<div class="border-t border-white/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 font-body">
-<p>© 2024 Cevicheria El Marati. Todos los derechos reservados.</p>
-<div class="flex gap-6 mt-4 md:mt-0">
-<a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
-<a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Enlaces Rápidos</h3>
+          <ul class="space-y-3 font-body text-sm">
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="inicio.html">Inicio</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="menu.html">Menú</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="reserva.html">Reservas</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Contacto</h3>
+          <ul class="space-y-4 font-body text-sm">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
+              <span class="text-gray-400">Av. La Mar 1234, Miraflores<br />Lima, Perú</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-lg">call</span>
+              <span class="text-gray-400">+51 987 654 321</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-lg">mail</span>
+              <span class="text-gray-400"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                  data-cfemail="e98a86879d888a9d86a98c8584889b889d80c78a8684">[email&#160;protected]</a></span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Síguenos</h3>
+          <div class="flex gap-4">
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                </path>
+              </svg>
+            </a>
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-coral-accent hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-[#25D366] hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c.967.592 2.056.935 3.208.935h.005c3.179 0 5.767-2.587 5.767-5.766.001-1.541-.602-2.985-1.695-4.073-1.092-1.088-2.545-1.693-4.483-1.649zm9.75 3.129c1.42 2.346 1.42 5.283-.281 7.693l-1.011 3.3 2.181.572a1.001 1.001 0 0 1 .718 1.258l-.666 2.53a.999.999 0 0 1-1.259.718l-1.834-.482a13.918 13.918 0 0 1-5.12 1.944l.117 1.895a1 1 0 0 1-.937 1.06h-3.61a1 1 0 0 1-.994-.906l-.16-1.894a14.048 14.048 0 0 1-5.02-1.884l-1.865.61a.999.999 0 0 1-1.272-.614l-.841-2.476a.999.999 0 0 1 .555-1.27l2.067-.788a13.882 13.882 0 0 1-.417-6.046l-2.071-.726a1.001 1.001 0 0 1-.617-1.253l.794-2.492a1 1 0 0 1 1.254-.627l1.961.574a14.07 14.07 0 0 1 4.908-2.126l.164-1.928a1 1 0 0 1 .995-.916h3.61a1.001 1.001 0 0 1 .993.915l.116 1.927a14.084 14.084 0 0 1 5.097 2.186l1.887-.618a1.001 1.001 0 0 1 1.266.603l.898 2.457a.999.999 0 0 1-.6 1.26l-2.046.726zM20.52 3.456a10.912 10.912 0 0 0-7.794-3.23c-4.148 0-7.74 2.521-9.434 6.13a10.875 10.875 0 0 0-.256 8.362l-1.583 5.776 5.922-1.55a10.893 10.893 0 0 0 5.352 1.396h.006c6.023 0 10.923-4.9 10.925-10.922a10.874 10.874 0 0 0-3.138-7.962z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-white/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 font-body">
+        <p>© 2024 Cevicheria El Marati. Todos los derechos reservados.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
+          <a c

@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Menú El Marati - Catálogo Completo</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
+<html class="dark" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Menú El Marati - Catálogo Completo</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -22,20 +27,24 @@
             "sand-white": "#f3f4f6",
             "coral-accent": "#f43b05",
             "text-dark": "#1a1a1a",
+            "gold-accent": "#D4AF37",
+            "navy-text": "#0a192f",
+            "charcoal-text": "#2d3748",
           },
           fontFamily: {
             "display": ["Playfair Display", "serif"],
             "body": ["Lato", "sans-serif"],
           },
-          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
         },
       },
     }
   </script>
-<style>
+  <style>
     .transparent-nav {
       background: transparent;
     }
+
     .glass-nav {
       background: rgba(16, 22, 34, 0.85);
       backdrop-filter: blur(12px);
@@ -43,32 +52,959 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
+
     .hero-gradient {
       background: linear-gradient(0deg, rgba(5, 11, 20, 0.8) 0%, rgba(5, 11, 20, 0.4) 100%);
     }
+
     @keyframes pulse-slow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.1); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
     }
+
     .animate-pulse-slow {
       animation: pulse-slow 3s infinite ease-in-out;
     }
+
     .text-shadow-sm {
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
+
     .card-gradient-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
-    }.hide-scrollbar::-webkit-scrollbar {
-        display: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0) 100%);
     }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
     .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Cart panel */
+    .cart-glass-luxury-light {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-left: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-luxury {
+      background: linear-gradient(135deg, #005fac 0%, #003d73 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Cart slide animation */
+    #cart-panel {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #cart-panel.open {
+      transform: translateX(0);
+    }
+
+    #cart-overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    #cart-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Add to cart feedback */
+    @keyframes pop {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.25)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .cart-pop {
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes badge-pulse {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.5)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .badge-pulse {
+      animation: badge-pulse 0.3s ease;
+    }
+
+    /* Empty cart state */
+    #cart-empty {
+      display: none;
+    }
+
+    #cart-empty.show {
+      display: flex;
     }
   </style>
-<script>
-    // Simple script to handle scroll event for header glassmorphism
-    window.addEventListener('scroll', function() {
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-sand-white antialiased overflow-x-hidden">
+
+  <!-- ===== CART OVERLAY ===== -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-[60] backdrop-blur-sm" onclick="closeCart()"></div>
+
+  <!-- ===== CART PANEL ===== -->
+  <div id="cart-panel"
+    class="fixed top-0 right-0 h-full w-full max-w-md cart-glass-luxury-light z-[70] shadow-2xl flex flex-col">
+    <!-- Header -->
+    <div class="p-8 flex items-center justify-between border-b border-gray-200">
+      <div class="flex items-center gap-3">
+        <h2 class="font-display text-3xl font-bold text-navy-text tracking-wide">Tu Carrito</h2>
+        <span id="cart-header-count"
+          class="bg-primary text-white text-xs font-bold font-body px-2.5 py-1 rounded-full hidden">0</span>
+      </div>
+      <button onclick="closeCart()"
+        class="p-2 text-charcoal-text hover:text-navy-text transition-colors rounded-full hover:bg-gray-100">
+        <span class="material-symbols-outlined font-light">close</span>
+      </button>
+    </div>
+
+    <!-- Empty state -->
+    <div id="cart-empty" class="flex-grow flex flex-col items-center justify-center gap-4 px-8 text-center">
+      <div class="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl text-gray-300">shopping_cart</span>
+      </div>
+      <p class="font-display text-xl font-semibold text-navy-text">Tu carrito está vacío</p>
+      <p class="font-body text-sm text-gray-500">Agrega platos desde nuestro menú para comenzar tu pedido.</p>
+      <button onclick="closeCart()"
+        class="mt-2 px-6 py-2.5 rounded-full bg-primary text-white font-body font-bold text-sm hover:bg-primary-dark transition-colors">
+        Explorar Menú
+      </button>
+    </div>
+
+    <!-- Cart items -->
+    <div id="cart-items-container" class="flex-grow overflow-y-auto px-8 pt-4 pb-4 space-y-0 hide-scrollbar"></div>
+
+    <!-- Footer totals -->
+    <div id="cart-footer" class="p-8 border-t border-gray-200 space-y-4 bg-white/60">
+      <div class="flex justify-between items-center">
+        <span class="font-body text-charcoal-text uppercase tracking-[0.15em] text-xs font-medium">Subtotal</span>
+        <span id="cart-subtotal" class="font-display text-navy-text font-medium text-lg">S/ 0.00</span>
+      </div>
+      <div class="flex justify-between items-center pt-2 pb-2 border-t border-gray-100">
+        <span class="font-display text-navy-text font-medium text-2xl tracking-wide">Total a Pagar</span>
+        <span id="cart-total" class="font-display text-navy-text font-bold text-3xl">S/ 0.00</span>
+      </div>
+      <a href="checkout.html" id="checkout-btn"
+        class="w-full btn-luxury hover:brightness-110 text-white font-body font-medium py-5 rounded-lg shadow-xl shadow-primary/20 transition-all uppercase tracking-[0.2em] text-sm mt-4 border border-white/20 flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-lg">check_circle</span>
+        Finalizar Compra
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <div class="relative flex min-h-[60vh] w-full flex-col group/design-root">
+    <div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
+      <div
+        class="h-full w-full bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-in-out hover:scale-105"
+        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1VZC8lpWcsiPIpb399KjaYS1_YiKUdZQ6L2aQ6wJilJ7JDQVzahHCAAlbwCY-NcpyXMpPwM4Htpbg_22m62azWJR7I0WO4L-XhJaQyXwy6bh_S2yS-WGQr46ekNJd5BBnRvV5lsmZIGF96RYCmc0DcvWpdwW7gWsbUNB30k-j2yFSl06yzzXMQdI9beARkjbhngJf5-LGgr19KZ2lT9X_diLr31HZKiUQ05HhVpXAA6cKDEifstRRaKv5K3rjyaZyOry2Xv0dMllS");'>
+      </div>
+      <div class="absolute inset-0 hero-gradient bg-black/50"></div>
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 w-full transparent-nav transition-all duration-300">
+      <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <div class="flex items-center gap-3">
+          <div
+            class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20 backdrop-blur-sm">
+            <span class="material-symbols-outlined text-2xl">sailing</span>
+          </div>
+          <h1 class="text-xl font-bold tracking-tight text-white lg:text-2xl drop-shadow-md font-display">El Marati</h1>
+        </div>
+        <nav class="hidden md:flex flex-1 justify-center">
+          <ul class="flex items-center gap-10">
+            <li><a
+                class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm"
+                href="inicio.html">Inicio</a></li>
+            <li><a
+                class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm"
+                href="menu.html">Menú</a></li>
+            <li><a
+                class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm"
+                href="reserva.html">Reservas</a></li>
+            <li><a
+                class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm"
+                href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="flex items-center gap-4">
+          <button onclick="openCart()" id="cart-btn"
+            class="group relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white transition-colors hover:bg-primary hover:border-primary hover:text-white backdrop-blur-sm">
+            <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+            <span id="cart-badge"
+              class="absolute -right-1.5 -top-1.5 h-5 w-5 rounded-full bg-coral-accent border-2 border-[#101622] text-white text-[10px] font-bold font-body flex items-center justify-center hidden">0</span>
+          </button>
+          <button class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-white">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10 flex flex-grow flex-col items-center justify-center pt-20 pb-16">
+      <div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 lg:px-8 text-center">
+        <div class="flex flex-col gap-6 py-12 lg:py-20">
+          <h2
+            class="font-display text-5xl font-black leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-2xl">
+            Nuestra Carta: <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-coral-accent to-white">Un Festín de
+              Sabores</span>
+          </h2>
+          <p class="font-body text-lg leading-relaxed text-gray-200 max-w-2xl mx-auto">
+            Descubre nuestra selección de platos preparados con la pesca más fresca del día y la sazón inconfundible de
+            nuestra tradición.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===== CHEF SPECIALS ===== -->
+  <section class="relative bg-background-light py-16 px-6 lg:px-8 border-t border-gray-200/50">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-[2px] w-8 bg-coral-accent"></div>
+            <span class="font-body text-xs font-bold uppercase tracking-widest text-coral-accent">Recomendados del
+              Chef</span>
+          </div>
+          <h3 class="font-display text-4xl md:text-5xl font-bold text-text-dark tracking-tight">Tesoros del Día</h3>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full h-auto min-h-[500px]">
+        <!-- Featured: Lomo Saltado -->
+        <div
+          class="lg:col-span-7 relative group overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 h-[400px] lg:h-auto cursor-pointer"
+          onclick="goToProduct('lomo-saltado-royal')">
+          <img alt="Lomo Saltado Premium"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM" />
+          <div class="absolute inset-0 card-gradient-overlay"></div>
+          <div class="absolute top-6 left-6 z-10">
+            <span
+              class="inline-flex items-center gap-1 bg-white/95 backdrop-blur text-coral-accent text-xs font-bold font-body px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">star</span> Destacado
+            </span>
+          </div>
+          <div class="absolute bottom-0 left-0 p-8 lg:p-10 w-full z-20">
+            <h4 class="text-3xl lg:text-4xl font-display font-bold text-white mb-2 tracking-tight">Lomo Saltado Royal
+            </h4>
+            <p class="text-white/80 font-body text-base mb-6 max-w-lg font-light leading-relaxed hidden sm:block">
+              Trozos de lomo fino salteados al wok con cebolla y tomate.
+            </p>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div class="flex items-baseline gap-3">
+                <span class="text-white font-display text-3xl font-bold">S/ 48.00</span>
+                <span class="text-white/60 text-lg font-body line-through decoration-coral-accent decoration-2">S/
+                  65.00</span>
+              </div>
+              <button onclick="event.stopPropagation(); addToCart(this)" data-id="lomo-saltado-royal"
+                data-name="Lomo Saltado Royal" data-price="48.00"
+                data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM"
+                data-category="Criollos"
+                class="bg-primary hover:bg-primary-dark text-white font-bold font-body h-10 px-6 rounded-full transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">shopping_cart</span> Añadir
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+          <!-- Ceviche Clásico -->
+          <div
+            class="relative group flex-1 overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-500 min-h-[240px] cursor-pointer"
+            onclick="goToProduct('ceviche-clasico')">
+            <img alt="Ceviche Clásico"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-5 right-5 z-10">
+              <div class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1 rounded-full shadow-sm">
+                Oferta</div>
+            </div>
+            <div class="absolute bottom-0 left-0 p-6 w-full z-20">
+              <div class="flex justify-between items-end">
+                <div>
+                  <h4 class="text-xl font-display font-bold text-white mb-1">Ceviche Clásico</h4>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="block text-2xl font-bold font-display text-white">S/ 32.00</span>
+                  <button onclick="event.stopPropagation(); addToCart(this)" data-id="ceviche-clasico"
+                    data-name="Ceviche Clásico" data-price="32.00"
+                    data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy"
+                    data-category="Ceviches"
+                    class="h-10 w-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg">
+                    <span class="material-symbols-outlined">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trío de Causas -->
+          <div
+            class="relative group flex-1 overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-500 min-h-[240px] cursor-pointer"
+            onclick="goToProduct('trio-causas')">
+            <img alt="Causa Limeña"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAowm76GgTXrKrUQaXUQ0UhGyUlhmceGyM1Las04NN4qmMels3tzoS5ME_wXV2-DXS_NVLQF262sKd0Bae5oavmuUY4kkiRWecksrO7MeG9ZPaJsktvbfqC4g0-NLIaTpC1FZWeEJolUUBYQimLJTDz8w-Hkqd8MY6dML3h8uH2rCA70OWBCfebd-cbnxhM3Se-v6SwXWg1IgbG5pV4fFb8-pVEGb3AlXiKN8yXeyQ8zcjk3MMPwgmY5LZue4CYEljCf4OtcvpRj1yJ" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6 w-full z-20">
+              <div class="flex justify-between items-end w-full">
+                <div class="flex-1">
+                  <h4 class="text-xl font-display font-bold text-white mb-1">Trío de Causas</h4>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl font-bold font-display text-white">S/ 28.00</span>
+                  <button onclick="event.stopPropagation(); addToCart(this)" data-id="trio-causas"
+                    data-name="Trío de Causas" data-price="28.00"
+                    data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuAowm76GgTXrKrUQaXUQ0UhGyUlhmceGyM1Las04NN4qmMels3tzoS5ME_wXV2-DXS_NVLQF262sKd0Bae5oavmuUY4kkiRWecksrO7MeG9ZPaJsktvbfqC4g0-NLIaTpC1FZWeEJolUUBYQimLJTDz8w-Hkqd8MY6dML3h8uH2rCA70OWBCfebd-cbnxhM3Se-v6SwXWg1IgbG5pV4fFb8-pVEGb3AlXiKN8yXeyQ8zcjk3MMPwgmY5LZue4CYEljCf4OtcvpRj1yJ"
+                    data-category="Entradas"
+                    class="h-10 w-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg">
+                    <span class="material-symbols-outlined">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section class="bg-white py-8 border-b border-gray-100 sticky top-20 z-40 shadow-sm">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+        <div class="flex items-center w-full lg:w-auto">
+          <button
+            class="flex-shrink-0 mr-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <div
+            class="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full lg:w-auto pb-2 lg:pb-0 scroll-smooth">
+            <button onclick="filterCategory('todos', this)"
+              class="filter-btn active whitespace-nowrap rounded-full bg-coral-accent px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-coral-accent/90 transition-colors font-body">Todos</button>
+            <button onclick="filterCategory('Ceviches', this)"
+              class="filter-btn whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Ceviches</button>
+            <button onclick="filterCategory('Criollos', this)"
+              class="filter-btn whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Criollos</button>
+            <button onclick="filterCategory('Marinos', this)"
+              class="filter-btn whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Marinos</button>
+            <button onclick="filterCategory('Entradas', this)"
+              class="filter-btn whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Entradas</button>
+            <button onclick="filterCategory('Bebidas', this)"
+              class="filter-btn whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">Bebidas</button>
+          </div>
+          <button
+            class="flex-shrink-0 ml-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+        </div>
+        <div class="relative w-full lg:w-96">
+          <input id="search-input" oninput="filterSearch(this.value)"
+            class="w-full rounded-full border border-gray-300 bg-gray-50 py-2.5 pl-12 pr-4 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary font-body transition-all"
+            placeholder="Buscar plato..." type="text" />
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <section class="bg-background-light py-12 px-6 lg:px-8 min-h-screen">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-8">
+        <p class="text-sm text-gray-500 font-body" id="results-count">Mostrando <span
+            class="font-bold text-text-dark">8</span> platos</p>
+      </div>
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <!-- Card: Arroz con Mariscos -->
+        <div class="product-card" data-category="Marinos" data-name="Arroz con Mariscos">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('arroz-mariscos')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Arroz con Mariscos"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tlFAmlCcdMINHX5gI9ttNlgrS2BF_vt36HoLyGu5TjWc69lYLHafQItJ8lc6Y8nqo34VZoXlrbIw-sb761io-NknXyds9NYUFIjkgQCSXaLa5bjA_SsZ0qnlDp2yR14xLrU9Lo6qodenFXYDz92SaZp8RSXaJeyI5UcsopIM2xthytvPtEO0vIYr4VC21Gb6vJ9gDjWlhkFDeYHwOBASuzdZeKcOukNkY4YSvJC4szh7Mx-pkdJQ-eEHR7uorRjEXdagToYQHyAE" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Arroz con Mariscos</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 42.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="arroz-mariscos"
+                  data-name="Arroz con Mariscos" data-price="42.00" data-category="Marinos"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tlFAmlCcdMINHX5gI9ttNlgrS2BF_vt36HoLyGu5TjWc69lYLHafQItJ8lc6Y8nqo34VZoXlrbIw-sb761io-NknXyds9NYUFIjkgQCSXaLa5bjA_SsZ0qnlDp2yR14xLrU9Lo6qodenFXYDz92SaZp8RSXaJeyI5UcsopIM2xthytvPtEO0vIYr4VC21Gb6vJ9gDjWlhkFDeYHwOBASuzdZeKcOukNkY4YSvJC4szh7Mx-pkdJQ-eEHR7uorRjEXdagToYQHyAE"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Pulpo al Olivo -->
+        <div class="product-card" data-category="Entradas" data-name="Pulpo al Olivo">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('pulpo-olivo')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Pulpo al Olivo"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXXrk69thdb29EzcZCW3Vn0Eb5QV1ku39n50-bKFqX3fR157xtL_o8A6629b9h6Bw6LbU7fXMgbGQtIXEXkU6JHPs1_OF1ACvvMJiPTTlCP2GUimvSdYLvUozri6e5UIqDEHAA1tGHz05O9wNT32e21av7eK_aY6jE8R8CndeBEremZfbLDI3GddckHNe9TbdthUYJw6_ATECJz2w7Zr2w_rx_q-mx4AGaG45uHDv17d2kjS3Xk_GIS3MfuvgZfNYYJeeZeWksEbCw" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Entradas</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Pulpo al Olivo</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 38.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="pulpo-olivo"
+                  data-name="Pulpo al Olivo" data-price="38.00" data-category="Entradas"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuBXXrk69thdb29EzcZCW3Vn0Eb5QV1ku39n50-bKFqX3fR157xtL_o8A6629b9h6Bw6LbU7fXMgbGQtIXEXkU6JHPs1_OF1ACvvMJiPTTlCP2GUimvSdYLvUozri6e5UIqDEHAA1tGHz05O9wNT32e21av7eK_aY6jE8R8CndeBEremZfbLDI3GddckHNe9TbdthUYJw6_ATECJz2w7Zr2w_rx_q-mx4AGaG45uHDv17d2kjS3Xk_GIS3MfuvgZfNYYJeeZeWksEbCw"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Tacu Tacu -->
+        <div class="product-card" data-category="Criollos" data-name="Tacu Tacu a lo Pobre">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('tacu-tacu')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Tacu Tacu con Lomo"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMT9I1rNy-1I9pl3634PDZ6cIcbD8aPvZ-zaMkuOY2ypfCgThso0-BQVR1zxMWglcp5PIrSfJ9ivIf8YC2cTfxwIcD6KfTha3qxfzVMK9SQyzdrcRVQzpmLmgB9mB27ammk5HFV5UGoUXMkV262XCtpe__8hUwEk-zSSbE2NbJWutFpZ_NStuzudtGTJSR2HV-_qti5qmIoP-QHCScFPBEQW9z2ncMRaWOSvNDwZNLrtEU0F5mzpXTZvIO-9zRrZgPb5t8gOHko6hk" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Criollos</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Tacu Tacu a lo Pobre</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 45.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="tacu-tacu"
+                  data-name="Tacu Tacu a lo Pobre" data-price="45.00" data-category="Criollos"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCMT9I1rNy-1I9pl3634PDZ6cIcbD8aPvZ-zaMkuOY2ypfCgThso0-BQVR1zxMWglcp5PIrSfJ9ivIf8YC2cTfxwIcD6KfTha3qxfzVMK9SQyzdrcRVQzpmLmgB9mB27ammk5HFV5UGoUXMkV262XCtpe__8hUwEk-zSSbE2NbJWutFpZ_NStuzudtGTJSR2HV-_qti5qmIoP-QHCScFPBEQW9z2ncMRaWOSvNDwZNLrtEU0F5mzpXTZvIO-9zRrZgPb5t8gOHko6hk"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Jalea Mixta -->
+        <div class="product-card" data-category="Marinos" data-name="Jalea Mixta">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('jalea-mixta')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Jalea Mixta"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAklFYzyJgpVVPvxmYLo-OOI1JOpLIWCM2ChhuJkwhbOWoq9yN5cuNGeU7UuEoU1817U3ECcqjjHuoxBOiiT3JZHW3ca0cFzqpLyMlV4vo8vfn3It7iBOsmkAzL24qj7SOpOABYw1ufBYNM8jMwrROHnfdyj9uXy8KIGik2E4W55HTcjUiri24mCCuTeC4GXwDh_pVQ6e7e9vTKRogKvM8J-vgti7DuKclA2Vdphp3zK6Lxol8AIAO2caldm_60N3BV3c5Jxgeq5mEJ" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Jalea Mixta</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 55.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="jalea-mixta" data-name="Jalea Mixta"
+                  data-price="55.00" data-category="Marinos"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuAklFYzyJgpVVPvxmYLo-OOI1JOpLIWCM2ChhuJkwhbOWoq9yN5cuNGeU7UuEoU1817U3ECcqjjHuoxBOiiT3JZHW3ca0cFzqpLyMlV4vo8vfn3It7iBOsmkAzL24qj7SOpOABYw1ufBYNM8jMwrROHnfdyj9uXy8KIGik2E4W55HTcjUiri24mCCuTeC4GXwDh_pVQ6e7e9vTKRogKvM8J-vgti7DuKclA2Vdphp3zK6Lxol8AIAO2caldm_60N3BV3c5Jxgeq5mEJ"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Causa de Langostinos -->
+        <div class="product-card" data-category="Entradas" data-name="Causa de Langostinos">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('causa-langostinos')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Causa de Langostinos"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIyZGVpIItL50o3gLDF7ZyP7nMWx2iSfyDd_dJcdgkTmgQVsL5_ebde-sDA36caw6ZU4NgszW5bodqFGw0CIBPSEpG2_GShXTO1BdbVPZ8F7cADfx-7i7ouwRdU3k3M7wqk-DuzIG-Nt4Vz7Lw-Kfpqpea_hi8ntvrpSVD97WGdQCC8PpLGBfjaAkR2HQytu782v-O93FAWsvdr_hGIM8B64pChR1BoBSYiHXgkNY0yzpO_No7tvQRIiwBXf2XQY5FkKuFRUqRHKP" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Entradas</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Causa de Langostinos</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 35.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="causa-langostinos"
+                  data-name="Causa de Langostinos" data-price="35.00" data-category="Entradas"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIyZGVpIItL50o3gLDF7ZyP7nMWx2iSfyDd_dJcdgkTmgQVsL5_ebde-sDA36caw6ZU4NgszW5bodqFGw0CIBPSEpG2_GShXTO1BdbVPZ8F7cADfx-7i7ouwRdU3k3M7wqk-DuzIG-Nt4Vz7Lw-Kfpqpea_hi8ntvrpSVD97WGdQCC8PpLGBfjaAkR2HQytu782v-O93FAWsvdr_hGIM8B64pChR1BoBSYiHXgkNY0yzpO_No7tvQRIiwBXf2XQY5FkKuFRUqRHKP"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Chilcano de Pescado -->
+        <div class="product-card" data-category="Ceviches" data-name="Chilcano de Pescado">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('chilcano-pescado')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Chilcano de Pescado"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_hiqbXtWFVlTCOUdv230zcjJ8Rjg_UWfGBmbP1n2Wk3NrwJr9-jZv3gwqKjA1Fu4pnRV3Z745wYPm2DGJUShjOw61kpq1Q3pmqrDJ04-Oym2qsbZ6EfcJlOEcInwmoZ1Bx6UTODbrxsuoEX4TJuPmqZ9CGeLEpgBH3xz_-xRmt4QyUihjNifxaTIItTlckl1Gj25KLsyb-mbyGjvg2r53DDKYH89sTAoUnxwsIa_Y064Bagjbl7uRrpktEKgqcklmwNYU9l4IAAve" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Sopas</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Chilcano de Pescado</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 22.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="chilcano-pescado"
+                  data-name="Chilcano de Pescado" data-price="22.00" data-category="Ceviches"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB_hiqbXtWFVlTCOUdv230zcjJ8Rjg_UWfGBmbP1n2Wk3NrwJr9-jZv3gwqKjA1Fu4pnRV3Z745wYPm2DGJUShjOw61kpq1Q3pmqrDJ04-Oym2qsbZ6EfcJlOEcInwmoZ1Bx6UTODbrxsuoEX4TJuPmqZ9CGeLEpgBH3xz_-xRmt4QyUihjNifxaTIItTlckl1Gj25KLsyb-mbyGjvg2r53DDKYH89sTAoUnxwsIa_Y064Bagjbl7uRrpktEKgqcklmwNYU9l4IAAve"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Chaufa de Mariscos -->
+        <div class="product-card" data-category="Marinos" data-name="Chaufa de Mariscos">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('chaufa-mariscos')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Chaufa de Mariscos"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA30A5rovVO-k5VUZolJ6-CI92X5-5kA5vhXe1ioCu6lPVoh51RekNn13trB0Ja5HSmbAmOMH1c6BqE9F-_ci6ceaZSWqlUvH440s562Dri-M9kQR5yw6ZNB0bdDVdcH6LJQ4tslUuGrADGB5gntTZZqOr0amTlh_8wFg3Fy455cpndR10aWwqwdTiuy-fW4FaHST9ay53rpIAuTJL5X6Phacqxp4VZsrwfCtsjQEF16vQEwNYGeliEE4Bz_EJUMV45DuJKCDDVUNDX" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Chaufas</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Chaufa de Mariscos</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 40.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="chaufa-mariscos"
+                  data-name="Chaufa de Mariscos" data-price="40.00" data-category="Marinos"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuA30A5rovVO-k5VUZolJ6-CI92X5-5kA5vhXe1ioCu6lPVoh51RekNn13trB0Ja5HSmbAmOMH1c6BqE9F-_ci6ceaZSWqlUvH440s562Dri-M9kQR5yw6ZNB0bdDVdcH6LJQ4tslUuGrADGB5gntTZZqOr0amTlh_8wFg3Fy455cpndR10aWwqwdTiuy-fW4FaHST9ay53rpIAuTJL5X6Phacqxp4VZsrwfCtsjQEF16vQEwNYGeliEE4Bz_EJUMV45DuJKCDDVUNDX"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Tiradito -->
+        <div class="product-card" data-category="Marinos" data-name="Tiradito a la Crema">
+          <div
+            class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100 cursor-pointer"
+            onclick="goToProduct('tiradito-crema')">
+            <div class="relative overflow-hidden h-60">
+              <img alt="Tiradito a la Crema"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIfuuW0C84oAs5iB9ljqY4aEstPWB-mv74M5cgNraUWmlb3px73hzx_yi_kIAkrd-Sum6-SiypE39OxH0_OZBHIvJ99Kw8rQk4jQBbWL5HCxXCoKog4_T6Lme9gTTD2W-2czm5aiUvL47dqQLH7r6oE9eaiTAVEUEdThITp-wVCveqn0hvC34IJpJjMM5wUKLXyX92sBmZhAejCk0mQothV7jjB_WJRau9NeODqbI3hldEgSImo-Lyh4vdnvisi_8kugn_xF7PVy_u" />
+              <div class="absolute top-3 right-3 z-20"><span
+                  class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow text-center">
+              <h4 class="font-display text-xl font-bold text-text-dark mb-4">Tiradito a la Crema</h4>
+              <div class="mt-auto w-full">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                  <span class="font-display font-bold text-2xl text-primary">S/ 38.00</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCart(this)" data-id="tiradito-crema"
+                  data-name="Tiradito a la Crema" data-price="38.00" data-category="Marinos"
+                  data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDIfuuW0C84oAs5iB9ljqY4aEstPWB-mv74M5cgNraUWmlb3px73hzx_yi_kIAkrd-Sum6-SiypE39OxH0_OZBHIvJ99Kw8rQk4jQBbWL5HCxXCoKog4_T6Lme9gTTD2W-2czm5aiUvL47dqQLH7r6oE9eaiTAVEUEdThITp-wVCveqn0hvC34IJpJjMM5wUKLXyX92sBmZhAejCk0mQothV7jjB_WJRau9NeODqbI3hldEgSImo-Lyh4vdnvisi_8kugn_xF7PVy_u"
+                  class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  Añadir al carrito <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex items-center justify-center gap-4 mt-16">
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all">
+          <span class="material-symbols-outlined text-xl">chevron_left</span>
+        </button>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold font-body shadow-md">1</button>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">2</button>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">3</button>
+        <span class="text-gray-400">...</span>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">5</button>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all">
+          <span class="material-symbols-outlined text-xl">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-background-dark text-gray-300 py-16 px-6 lg:px-8 border-t border-white/5">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center gap-3">
+            <div
+              class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20">
+              <span class="material-symbols-outlined text-2xl">sailing</span>
+            </div>
+            <h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md font-display">El Marati</h2>
+          </div>
+          <p class="text-sm leading-relaxed text-gray-400 font-body">Sabores peruanos auténticos con un toque de
+            innovación. La mejor experiencia marina y criolla de la ciudad.</p>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Enlaces Rápidos</h3>
+          <ul class="space-y-3 font-body text-sm">
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="inicio.html">Inicio</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="menu.html">Menú</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="reserva.html">Reservas</a></li>
+            <li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2"
+                href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Contacto</h3>
+          <ul class="space-y-4 font-body text-sm">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
+              <span class="text-gray-400">Av. La Mar 1234, Miraflores<br />Lima, Perú</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-lg">call</span>
+              <span class="text-gray-400">+51 987 654 321</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary text-lg">mail</span>
+              <span class="text-gray-400">contacto@elmarati.com</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-bold font-display mb-6">Síguenos</h3>
+          <div class="flex gap-4">
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-coral-accent hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-[#25D366] hover:text-white transition-all duration-300 border border-white/10"
+              href="#">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path
+                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c.967.592 2.056.935 3.208.935h.005c3.179 0 5.767-2.587 5.767-5.766.001-1.541-.602-2.985-1.695-4.073-1.092-1.088-2.545-1.693-4.483-1.649zm9.75 3.129c1.42 2.346 1.42 5.283-.281 7.693l-1.011 3.3 2.181.572a1.001 1.001 0 0 1 .718 1.258l-.666 2.53a.999.999 0 0 1-1.259.718l-1.834-.482a13.918 13.918 0 0 1-5.12 1.944l.117 1.895a1 1 0 0 1-.937 1.06h-3.61a1 1 0 0 1-.994-.906l-.16-1.894a14.048 14.048 0 0 1-5.02-1.884l-1.865.61a.999.999 0 0 1-1.272-.614l-.841-2.476a.999.999 0 0 1 .555-1.27l2.067-.788a13.882 13.882 0 0 1-.417-6.046l-2.071-.726a1.001 1.001 0 0 1-.617-1.253l.794-2.492a1 1 0 0 1 1.254-.627l1.961.574a14.07 14.07 0 0 1 4.908-2.126l.164-1.928a1 1 0 0 1 .995-.916h3.61a1.001 1.001 0 0 1 .993.915l.116 1.927a14.084 14.084 0 0 1 5.097 2.186l1.887-.618a1.001 1.001 0 0 1 1.266.603l.898 2.457a.999.999 0 0 1-.6 1.26l-2.046.726zM20.52 3.456a10.912 10.912 0 0 0-7.794-3.23c-4.148 0-7.74 2.521-9.434 6.13a10.875 10.875 0 0 0-.256 8.362l-1.583 5.776 5.922-1.55a10.893 10.893 0 0 0 5.352 1.396h.006c6.023 0 10.923-4.9 10.925-10.922a10.874 10.874 0 0 0-3.138-7.962z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-white/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 font-body">
+        <p>© 2024 Cevicheria El Marati. Todos los derechos reservados.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
+          <a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== CART LOGIC ===== -->
+  <script>
+    // ---- State ----
+    const CART_KEY = 'elmarati_cart';
+
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+      catch (e) { return []; }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    // ---- Navigate to product detail ----
+    function goToProduct(productId) {
+      window.location.href = `detalle_producto.html?id=${productId}`;
+    }
+
+    // ---- Add to cart ----
+    function addToCart(btn) {
+      const id = btn.dataset.id;
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+      const img = btn.dataset.img;
+      const category = btn.dataset.category;
+
+      let cart = getCart();
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price, img, category, qty: 1 });
+      }
+      saveCart(cart);
+      updateCartUI();
+      renderCartItems();
+      openCart();
+      // visual feedback on button
+      btn.classList.add('cart-pop');
+      setTimeout(() => btn.classList.remove('cart-pop'), 300);
+    }
+
+
+    // ---- Remove item ----
+    function removeFromCart(id) {
+      let cart = getCart().filter(item => item.id !== id);
+      saveCart(cart);
+      updateCartUI();
+      renderCartItems();
+    }
+
+    // ---- Change qty ----
+    function changeQty(id, delta) {
+      let cart = getCart();
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveCart(cart);
+      updateCartUI();
+      renderCartItems();
+    }
+
+    // ---- Update badge & totals ----
+    function updateCartUI() {
+      const cart = getCart();
+      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+      const totalAmt = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+      const badge = document.getElementById('cart-badge');
+      const headerCount = document.getElementById('cart-header-count');
+
+      if (totalQty > 0) {
+        badge.textContent = totalQty > 99 ? '99+' : totalQty;
+        badge.classList.remove('hidden');
+        badge.classList.add('badge-pulse');
+        setTimeout(() => badge.classList.remove('badge-pulse'), 300);
+        headerCount.textContent = totalQty;
+        headerCount.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+        headerCount.classList.add('hidden');
+      }
+
+      const fmt = (n) => 'S/ ' + n.toFixed(2);
+      document.getElementById('cart-subtotal').textContent = fmt(totalAmt);
+      document.getElementById('cart-total').textContent = fmt(totalAmt);
+
+      // Show/hide empty state
+      const empty = document.getElementById('cart-empty');
+      const itemsContainer = document.getElementById('cart-items-container');
+      const footer = document.getElementById('cart-footer');
+      if (cart.length === 0) {
+        empty.classList.add('show');
+        itemsContainer.classList.add('hidden');
+        footer.classList.add('hidden');
+      } else {
+        empty.classList.remove('show');
+        itemsContainer.classList.remove('hidden');
+        footer.classList.remove('hidden');
+      }
+    }
+
+    // ---- Render items ----
+    function renderCartItems() {
+      const cart = getCart();
+      const container = document.getElementById('cart-items-container');
+      container.innerHTML = '';
+      cart.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'flex items-center gap-5 group border-b border-gray-100 py-5 first:pt-2';
+        el.innerHTML = `
+        <div class="size-20 rounded-lg overflow-hidden flex-shrink-0 shadow-md border border-gray-200">
+          <img alt="${item.name}" class="w-full h-full object-cover" src="${item.img}" onerror="this.src='https://via.placeholder.com/80x80?text=🍽'"/>
+        </div>
+        <div class="flex-grow flex flex-col justify-between min-h-[72px] py-1">
+          <div>
+            <h4 class="font-display font-medium text-navy-text text-base leading-tight mb-0.5 tracking-wide">${item.name}</h4>
+            <p class="font-body font-bold text-charcoal-text text-base">S/ ${(item.price * item.qty).toFixed(2)}</p>
+            <p class="font-body text-gray-400 text-xs">S/ ${item.price.toFixed(2)} c/u</p>
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex items-center gap-3 bg-gray-100 rounded-full px-3 py-1">
+              <button onclick="changeQty('${item.id}', -1)" class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-5 w-5">
+                <span class="material-symbols-outlined text-sm">remove</span>
+              </button>
+              <span class="font-display font-medium text-base text-navy-text min-w-[16px] text-center">${item.qty}</span>
+              <button onclick="changeQty('${item.id}', 1)" class="text-charcoal-text hover:text-navy-text transition-colors flex items-center justify-center h-5 w-5">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+            </div>
+            <button onclick="removeFromCart('${item.id}')" class="text-gray-400 hover:text-coral-accent transition-colors p-1 rounded-full hover:bg-red-50">
+              <span class="material-symbols-outlined text-[18px] font-light">delete</span>
+            </button>
+          </div>
+        </div>
+      `;
+        container.appendChild(el);
+      });
+    }
+
+    // ---- Open / Close cart ----
+    function openCart() {
+      document.getElementById('cart-panel').classList.add('open');
+      document.getElementById('cart-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-panel').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close with Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+
+    // ---- Filter & Search ----
+    let currentCategory = 'todos';
+    let currentSearch = '';
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      // update button styles
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-coral-accent', 'text-white', 'shadow-md');
+        b.classList.add('border', 'border-primary', 'text-primary');
+      });
+      btn.classList.add('bg-coral-accent', 'text-white', 'shadow-md');
+      btn.classList.remove('border', 'border-primary', 'text-primary');
+      applyFilters();
+    }
+
+    function filterSearch(val) {
+      currentSearch = val.toLowerCase();
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.product-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const matchCat = currentCategory === 'todos' || card.dataset.category === currentCategory;
+        const matchSearch = !currentSearch || card.dataset.name.toLowerCase().includes(currentSearch);
+        if (matchCat && matchSearch) {
+          card.style.display = '';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      const count = document.getElementById('results-count');
+      count.innerHTML = `Mostrando <span class="font-bold text-text-dark">${visible}</span> platos`;
+    }
+
+    // ---- Scroll nav ----
+    window.addEventListener('scroll', function () {
       const header = document.querySelector('header');
       if (window.scrollY > 50) {
         header.classList.remove('transparent-nav');
@@ -78,425 +1014,12 @@
         header.classList.remove('glass-nav');
       }
     });
-  </script>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-sand-white antialiased overflow-x-hidden">
-<div class="relative flex min-h-[60vh] w-full flex-col group/design-root">
-<div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
-<div class="h-full w-full bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-in-out hover:scale-105" data-alt="High-end Peruvian ceviche plate close up" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1VZC8lpWcsiPIpb399KjaYS1_YiKUdZQ6L2aQ6wJilJ7JDQVzahHCAAlbwCY-NcpyXMpPwM4Htpbg_22m62azWJR7I0WO4L-XhJaQyXwy6bh_S2yS-WGQr46ekNJd5BBnRvV5lsmZIGF96RYCmc0DcvWpdwW7gWsbUNB30k-j2yFSl06yzzXMQdI9beARkjbhngJf5-LGgr19KZ2lT9X_diLr31HZKiUQ05HhVpXAA6cKDEifstRRaKv5K3rjyaZyOry2Xv0dMllS");'></div>
-<div class="absolute inset-0 hero-gradient bg-black/50"></div>
-</div>
-<header class="fixed top-0 left-0 right-0 z-50 w-full transparent-nav transition-all duration-300">
-<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-<div class="flex items-center gap-3">
-<div class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20 backdrop-blur-sm">
-<span class="material-symbols-outlined text-2xl">sailing</span>
-</div>
-<h1 class="text-xl font-bold tracking-tight text-white lg:text-2xl drop-shadow-md font-display">El Marati</h1>
-</div>
-<nav class="hidden md:flex flex-1 justify-center">
-<ul class="flex items-center gap-10">
-<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Inicio</a></li>
-<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Menú</a></li>
-<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Reservas</a></li>
-<li><a class="text-base font-medium font-body text-white hover:text-white hover:underline decoration-primary decoration-2 underline-offset-8 transition-all drop-shadow-sm" href="#">Contacto</a></li>
-</ul>
-</nav>
-<div class="flex items-center gap-4">
-<button class="group relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white transition-colors hover:bg-primary hover:border-primary hover:text-white backdrop-blur-sm">
-<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
-<span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-coral-accent border-2 border-[#101622] animate-pulse-slow"></span>
-</button>
-<button class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-white">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</header>
-<main class="relative z-10 flex flex-grow flex-col items-center justify-center pt-20 pb-16">
-<div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 lg:px-8 text-center">
-<div class="flex flex-col gap-6 py-12 lg:py-20">
-<h2 class="font-display text-5xl font-black leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-2xl">
-            Nuestra Carta: <br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-coral-accent to-white">Un Festín de Sabores</span>
-</h2>
-<p class="font-body text-lg leading-relaxed text-gray-200 max-w-2xl mx-auto">
-            Descubre nuestra selección de platos preparados con la pesca más fresca del día y la sazón inconfundible de nuestra tradición.
-          </p>
-</div>
-</div>
-</main>
-</div>
-<section class="relative bg-background-light py-16 px-6 lg:px-8 border-t border-gray-200/50">
-<div class="mx-auto max-w-7xl">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-<div>
-<div class="flex items-center gap-3 mb-4">
-<div class="h-[2px] w-8 bg-coral-accent"></div>
-<span class="font-body text-xs font-bold uppercase tracking-widest text-coral-accent">Recomendados del Chef</span>
-</div>
-<h3 class="font-display text-4xl md:text-5xl font-bold text-text-dark tracking-tight">Tesoros del Día</h3>
-</div>
-<div class="flex items-center gap-4">
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full h-auto min-h-[500px]">
-<div class="lg:col-span-7 relative group overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 h-[400px] lg:h-auto">
-<img alt="Lomo Saltado Premium" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjwbgcM65NVJAZVaMYI81RyuzplZFyIdz35fqmGrxNZvlMUM1WTjlzu1WfKb8GYIdL7o6kmh93yyXqVWLKNWjUB6nW6jSVG947MwvKfrsCUJLOZpSl8Wi2N7zZe2Y8HoitCQ5VIsEaLcqzhlnwTsgBt0m0iaP6z6iB8et2Q7foeFWAHk3Ryb85UsHwhrKS-PXnSEJO4NTt9fwhIaoVnDc4jM80TIZjCL7rVf4IX9df6ldwxfujjIgbNNyyawRFJIJUQ7bqr9SwavYM"/>
-<div class="absolute inset-0 card-gradient-overlay"></div>
-<div class="absolute top-6 left-6 z-10">
-<span class="inline-flex items-center gap-1 bg-white/95 backdrop-blur text-coral-accent text-xs font-bold font-body px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-<span class="material-symbols-outlined text-[14px]">star</span> Destacado
-                    </span>
-</div>
-<div class="absolute bottom-0 left-0 p-8 lg:p-10 w-full z-20">
-<h4 class="text-3xl lg:text-4xl font-display font-bold text-white mb-2 tracking-tight">Lomo Saltado Royal</h4>
-<p class="text-white/80 font-body text-base mb-6 max-w-lg font-light leading-relaxed hidden sm:block">
-                        Trozos de lomo fino salteados al wok con cebolla y tomate.
-                    </p>
-<div class="flex flex-wrap items-center justify-between gap-4">
-<div class="flex items-baseline gap-3">
-<span class="text-white font-display text-3xl font-bold">S/ 48.00</span>
-<span class="text-white/60 text-lg font-body line-through decoration-coral-accent decoration-2">S/ 65.00</span>
-</div>
-<button class="bg-primary hover:bg-primary-dark text-white font-bold font-body h-10 px-6 rounded-full transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">shopping_cart</span> Añadir
-                        </button>
-</div>
-</div>
-</div>
-<div class="lg:col-span-5 flex flex-col gap-6 h-full">
-<div class="relative group flex-1 overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-500 min-h-[240px]">
-<img alt="Ceviche Clásico" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCub0ZQSXFTm4n2xyrnaktj9RCOS2NkMzVWVDwmlUtFL1Lb2CpjIKGkt3M7kARhA0bN1GdFeMjd555FoUA8b8sjJFidzxvmEHUB53K_E8PQDwHmp9sqVzq4pqVbs259gPIdX0g0McISdmLTcNfGLsUgUJFKF0cmHTbABeNHn6bxbhvA6G1KNPWRbF8y4bFwoKSb0IjyyMD1JMRx3-U93pmUFiOOSdVcvcXU3568BKdySHG-Mj7aBlia3NEVlVKBmmD_njOs4tv06dBy"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-<div class="absolute top-5 right-5 z-10">
-<div class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1 rounded-full shadow-sm">
-                            Oferta
-                        </div>
-</div>
-<div class="absolute bottom-0 left-0 p-6 w-full z-20">
-<div class="flex justify-between items-end">
-<div>
-<h4 class="text-xl font-display font-bold text-white mb-1">Ceviche Clásico</h4>
-</div>
-<div class="text-right">
-<span class="block text-2xl font-bold font-display text-white">S/ 32.00</span>
-</div>
-</div>
-</div>
-</div>
-<div class="relative group flex-1 overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-500 min-h-[240px]">
-<img alt="Causa Limeña" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAowm76GgTXrKrUQaXUQ0UhGyUlhmceGyM1Las04NN4qmMels3tzoS5ME_wXV2-DXS_NVLQF262sKd0Bae5oavmuUY4kkiRWecksrO7MeG9ZPaJsktvbfqC4g0-NLIaTpC1FZWeEJolUUBYQimLJTDz8w-Hkqd8MY6dML3h8uH2rCA70OWBCfebd-cbnxhM3Se-v6SwXWg1IgbG5pV4fFb8-pVEGb3AlXiKN8yXeyQ8zcjk3MMPwgmY5LZue4CYEljCf4OtcvpRj1yJ"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-<div class="absolute bottom-0 left-0 p-6 w-full z-20">
-<div class="flex justify-between items-end w-full">
-<div class="flex-1">
-<h4 class="text-xl font-display font-bold text-white mb-1">Trío de Causas</h4>
-</div>
-<div class="flex items-center gap-3">
-<span class="text-2xl font-bold font-display text-white">S/ 28.00</span>
-<button class="h-10 w-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg">
-<span class="material-symbols-outlined">add</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="bg-white py-8 border-b border-gray-100 sticky top-20 z-40 shadow-sm">
-<div class="mx-auto max-w-7xl px-6 lg:px-8">
-<div class="flex flex-col lg:flex-row justify-between items-center gap-6">
-<div class="flex items-center w-full lg:w-auto">
-<button class="flex-shrink-0 mr-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
-<span class="material-symbols-outlined text-xl">chevron_left</span>
-</button>
-<div class="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full lg:w-auto pb-2 lg:pb-0 scroll-smooth">
-<button class="whitespace-nowrap rounded-full bg-coral-accent px-6 py-2.5 text-sm font-bold text-white shadow-md hover:bg-coral-accent/90 transition-colors font-body">
-                    Todos
-                </button>
-<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">
-                    Ceviches
-                </button>
-<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">
-                    Criollos
-                </button>
-<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">
-                    Marinos
-                </button>
-<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">
-                    Entradas
-                </button>
-<button class="whitespace-nowrap rounded-full border border-primary text-primary px-6 py-2.5 text-sm font-bold hover:bg-primary hover:text-white transition-all font-body">
-                    Bebidas
-                </button>
-</div>
-<button class="flex-shrink-0 ml-2 h-8 w-8 rounded-full border border-gray-200 text-gray-400 hover:border-coral-accent hover:text-coral-accent flex items-center justify-center transition-all">
-<span class="material-symbols-outlined text-xl">chevron_right</span>
-</button>
-</div>
-<div class="relative w-full lg:w-96">
-<input class="w-full rounded-full border border-gray-300 bg-gray-50 py-2.5 pl-12 pr-4 text-sm text-gray-700 focus:border-primary focus:ring-1 focus:ring-primary font-body transition-all" placeholder="Buscar plato..." type="text"/>
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-</div>
-</div>
-</div>
-</section>
-<section class="bg-background-light py-12 px-6 lg:px-8 min-h-screen">
-<div class="mx-auto max-w-7xl">
-<div class="mb-8">
-<p class="text-sm text-gray-500 font-body">Mostrando <span class="font-bold text-text-dark">15</span> resultados de <span class="font-bold text-text-dark">50</span></p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Arroz con Mariscos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tlFAmlCcdMINHX5gI9ttNlgrS2BF_vt36HoLyGu5TjWc69lYLHafQItJ8lc6Y8nqo34VZoXlrbIw-sb761io-NknXyds9NYUFIjkgQCSXaLa5bjA_SsZ0qnlDp2yR14xLrU9Lo6qodenFXYDz92SaZp8RSXaJeyI5UcsopIM2xthytvPtEO0vIYr4VC21Gb6vJ9gDjWlhkFDeYHwOBASuzdZeKcOukNkY4YSvJC4szh7Mx-pkdJQ-eEHR7uorRjEXdagToYQHyAE"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Arroz con Mariscos</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 42.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Pulpo al Olivo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXXrk69thdb29EzcZCW3Vn0Eb5QV1ku39n50-bKFqX3fR157xtL_o8A6629b9h6Bw6LbU7fXMgbGQtIXEXkU6JHPs1_OF1ACvvMJiPTTlCP2GUimvSdYLvUozri6e5UIqDEHAA1tGHz05O9wNT32e21av7eK_aY6jE8R8CndeBEremZfbLDI3GddckHNe9TbdthUYJw6_ATECJz2w7Zr2w_rx_q-mx4AGaG45uHDv17d2kjS3Xk_GIS3MfuvgZfNYYJeeZeWksEbCw"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Entradas</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Pulpo al Olivo</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 38.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Tacu Tacu con Lomo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMT9I1rNy-1I9pl3634PDZ6cIcbD8aPvZ-zaMkuOY2ypfCgThso0-BQVR1zxMWglcp5PIrSfJ9ivIf8YC2cTfxwIcD6KfTha3qxfzVMK9SQyzdrcRVQzpmLmgB9mB27ammk5HFV5UGoUXMkV262XCtpe__8hUwEk-zSSbE2NbJWutFpZ_NStuzudtGTJSR2HV-_qti5qmIoP-QHCScFPBEQW9z2ncMRaWOSvNDwZNLrtEU0F5mzpXTZvIO-9zRrZgPb5t8gOHko6hk"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Criollos</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Tacu Tacu a lo Pobre</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 45.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Jalea Mixta" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAklFYzyJgpVVPvxmYLo-OOI1JOpLIWCM2ChhuJkwhbOWoq9yN5cuNGeU7UuEoU1817U3ECcqjjHuoxBOiiT3JZHW3ca0cFzqpLyMlV4vo8vfn3It7iBOsmkAzL24qj7SOpOABYw1ufBYNM8jMwrROHnfdyj9uXy8KIGik2E4W55HTcjUiri24mCCuTeC4GXwDh_pVQ6e7e9vTKRogKvM8J-vgti7DuKclA2Vdphp3zK6Lxol8AIAO2caldm_60N3BV3c5Jxgeq5mEJ"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Frituras</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Jalea Mixta</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 55.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Causa de Langostinos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIyZGVpIItL50o3gLDF7ZyP7nMWx2iSfyDd_dJcdgkTmgQVsL5_ebde-sDA36caw6ZU4NgszW5bodqFGw0CIBPSEpG2_GShXTO1BdbVPZ8F7cADfx-7i7ouwRdU3k3M7wqk-DuzIG-Nt4Vz7Lw-Kfpqpea_hi8ntvrpSVD97WGdQCC8PpLGBfjaAkR2HQytu782v-O93FAWsvdr_hGIM8B64pChR1BoBSYiHXgkNY0yzpO_No7tvQRIiwBXf2XQY5FkKuFRUqRHKP"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Entradas</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Causa de Langostinos</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 35.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Chilcano de Pescado" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_hiqbXtWFVlTCOUdv230zcjJ8Rjg_UWfGBmbP1n2Wk3NrwJr9-jZv3gwqKjA1Fu4pnRV3Z745wYPm2DGJUShjOw61kpq1Q3pmqrDJ04-Oym2qsbZ6EfcJlOEcInwmoZ1Bx6UTODbrxsuoEX4TJuPmqZ9CGeLEpgBH3xz_-xRmt4QyUihjNifxaTIItTlckl1Gj25KLsyb-mbyGjvg2r53DDKYH89sTAoUnxwsIa_Y064Bagjbl7uRrpktEKgqcklmwNYU9l4IAAve"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Sopas</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Chilcano de Pescado</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 22.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Chaufa de Mariscos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA30A5rovVO-k5VUZolJ6-CI92X5-5kA5vhXe1ioCu6lPVoh51RekNn13trB0Ja5HSmbAmOMH1c6BqE9F-_ci6ceaZSWqlUvH440s562Dri-M9kQR5yw6ZNB0bdDVdcH6LJQ4tslUuGrADGB5gntTZZqOr0amTlh_8wFg3Fy455cpndR10aWwqwdTiuy-fW4FaHST9ay53rpIAuTJL5X6Phacqxp4VZsrwfCtsjQEF16vQEwNYGeliEE4Bz_EJUMV45DuJKCDDVUNDX"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Chaufas</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Chaufa de Mariscos</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 40.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100">
-<div class="relative overflow-hidden h-60">
-<img alt="Tiradito a la Crema" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIfuuW0C84oAs5iB9ljqY4aEstPWB-mv74M5cgNraUWmlb3px73hzx_yi_kIAkrd-Sum6-SiypE39OxH0_OZBHIvJ99Kw8rQk4jQBbWL5HCxXCoKog4_T6Lme9gTTD2W-2czm5aiUvL47dqQLH7r6oE9eaiTAVEUEdThITp-wVCveqn0hvC34IJpJjMM5wUKLXyX92sBmZhAejCk0mQothV7jjB_WJRau9NeODqbI3hldEgSImo-Lyh4vdnvisi_8kugn_xF7PVy_u"/>
-<div class="absolute top-3 right-3 z-20">
-<span class="bg-coral-accent text-white text-xs font-bold font-body px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">Marinos</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow text-center">
-<h4 class="font-display text-xl font-bold text-text-dark mb-4">Tiradito a la Crema</h4>
-<div class="mt-auto w-full">
-<div class="flex items-center justify-center gap-2 mb-4">
-<span class="font-display font-bold text-2xl text-primary">S/ 38.00</span>
-</div>
-<button class="w-full rounded-lg border border-primary bg-white text-primary py-2.5 font-bold font-body text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-primary/20">
-                            Añadir al carrito
-                            <span class="material-symbols-outlined text-lg">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-center gap-4 mt-16">
-<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined text-xl">chevron_left</span>
-</button>
-<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold font-body shadow-md">
-                1
-            </button>
-<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">
-                2
-            </button>
-<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">
-                3
-            </button>
-<span class="text-gray-400">...</span>
-<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all font-body">
-                5
-            </button>
-<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined text-xl">chevron_right</span>
-</button>
-</div>
-</div>
-</section>
-<footer class="bg-background-dark text-gray-300 py-16 px-6 lg:px-8 border-t border-white/5">
-<div class="mx-auto max-w-7xl">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
-<div class="flex flex-col gap-6">
-<div class="flex items-center gap-3">
-<div class="flex size-10 items-center justify-center rounded-full bg-primary/20 text-white border border-white/20">
-<span class="material-symbols-outlined text-2xl">sailing</span>
-</div>
-<h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md font-display">El Marati</h2>
-</div>
-<p class="text-sm leading-relaxed text-gray-400 font-body">
-            Sabores peruanos auténticos con un toque de innovación. La mejor experiencia marina y criolla de la ciudad.
-          </p>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Enlaces Rápidos</h3>
-<ul class="space-y-3 font-body text-sm">
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Inicio</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Menú</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Reservas</a></li>
-<li><a class="hover:text-primary transition-colors duration-200 flex items-center gap-2" href="#">Contacto</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Contacto</h3>
-<ul class="space-y-4 font-body text-sm">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary text-lg mt-0.5">location_on</span>
-<span class="text-gray-400">Av. La Mar 1234, Miraflores<br/>Lima, Perú</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">call</span>
-<span class="text-gray-400">+51 987 654 321</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">mail</span>
-<span class="text-gray-400">contacto@elmarati.com</span>
-</li>
-</ul>
-</div>
-<div>
-<h3 class="text-white text-lg font-bold font-display mb-6">Síguenos</h3>
-<div class="flex gap-4">
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-coral-accent hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-[#25D366] hover:text-white transition-all duration-300 border border-white/10" href="#">
-<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c.967.592 2.056.935 3.208.935h.005c3.179 0 5.767-2.587 5.767-5.766.001-1.541-.602-2.985-1.695-4.073-1.092-1.088-2.545-1.693-4.483-1.649zm9.75 3.129c1.42 2.346 1.42 5.283-.281 7.693l-1.011 3.3 2.181.572a1.001 1.001 0 0 1 .718 1.258l-.666 2.53a.999.999 0 0 1-1.259.718l-1.834-.482a13.918 13.918 0 0 1-5.12 1.944l.117 1.895a1 1 0 0 1-.937 1.06h-3.61a1 1 0 0 1-.994-.906l-.16-1.894a14.048 14.048 0 0 1-5.02-1.884l-1.865.61a.999.999 0 0 1-1.272-.614l-.841-2.476a.999.999 0 0 1 .555-1.27l2.067-.788a13.882 13.882 0 0 1-.417-6.046l-2.071-.726a1.001 1.001 0 0 1-.617-1.253l.794-2.492a1 1 0 0 1 1.254-.627l1.961.574a14.07 14.07 0 0 1 4.908-2.126l.164-1.928a1 1 0 0 1 .995-.916h3.61a1.001 1.001 0 0 1 .993.915l.116 1.927a14.084 14.084 0 0 1 5.097 2.186l1.887-.618a1.001 1.001 0 0 1 1.266.603l.898 2.457a.999.999 0 0 1-.6 1.26l-2.046.726zM20.52 3.456a10.912 10.912 0 0 0-7.794-3.23c-4.148 0-7.74 2.521-9.434 6.13a10.875 10.875 0 0 0-.256 8.362l-1.583 5.776 5.922-1.55a10.893 10.893 0 0 0 5.352 1.396h.006c6.023 0 10.923-4.9 10.925-10.922a10.874 10.874 0 0 0-3.138-7.962z"></path></svg>
-</a>
-</div>
-</div>
-</div>
-<div class="border-t border-white/10 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 font-body">
-<p>© 2024 Cevicheria El Marati. Todos los derechos reservados.</p>
-<div class="flex gap-6 mt-4 md:mt-0">
-<a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
-<a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-</div>
-</div>
-</div>
-</footer>
 
-</body></html>
+    // ---- Init ----
+    updateCartUI();
+    renderCartItems();
+
+  </script>
+</body>
+
+</html>
